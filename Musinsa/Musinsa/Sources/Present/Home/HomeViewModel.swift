@@ -13,9 +13,7 @@ final class HomeViewModel: ViewModel {
     }
     
     struct State {
-//        let presentErrorPopup = PublishRelay<String>()
         let appendSection = PublishRelay<SectionViewModel>()
-//        let updateSection = PublishRelay<(Int, HomeCollectionSectionModel)>()
         let reloadData = PublishRelay<Void>()
     }
     
@@ -35,11 +33,10 @@ final class HomeViewModel: ViewModel {
         Task {
             let recive = try await self.musinsaRepository.requestHome()
             if let error = recive.error {
-//                self.state.presentErrorPopup.accept(error.localizedDescription)
                 return
             }
             
-            let sectionModels = recive.value?.data
+            recive.value?.data
                 .map { section -> SectionViewModel in
                     switch section.contents.type {
                     case .banner:
@@ -51,11 +48,9 @@ final class HomeViewModel: ViewModel {
                     case .style:
                         return makeStyleViewModel(section: section)
                     }
+                }.forEach {
+                    state.appendSection.accept($0)
                 }
-            
-            sectionModels?.forEach {
-                state.appendSection.accept($0)
-            }
             
             state.reloadData.accept(())
         }

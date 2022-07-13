@@ -12,7 +12,7 @@ final class GridGoodsSectionDataSource: SectionDataSource {
     
     private let item: NSCollectionLayoutItem = {
         let fractionalWidth = 1.0 / 3.0
-        let fractionalHeight = fractionalWidth * 1.5
+        let fractionalHeight = fractionalWidth * 1.7
         let width: NSCollectionLayoutDimension = .fractionalWidth(fractionalWidth)
         let height: NSCollectionLayoutDimension = .fractionalWidth(fractionalHeight)
         let size = NSCollectionLayoutSize(widthDimension: width, heightDimension: height)
@@ -26,13 +26,12 @@ final class GridGoodsSectionDataSource: SectionDataSource {
         let height: NSCollectionLayoutDimension = .estimated(200)
         let size = NSCollectionLayoutSize(widthDimension: width, heightDimension: height)
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, subitems: [item])
-        group.contentInsets = .init(top: 0, leading: 3, bottom: 0, trailing: 3)
         return group
     }()
     
     lazy var section: NSCollectionLayoutSection = {
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = .init(top: 0, leading: 0, bottom: 10, trailing: 0)
+        section.contentInsets = .init(top: 5, leading: 10, bottom: 5, trailing: 10)
         return section
     }()
     

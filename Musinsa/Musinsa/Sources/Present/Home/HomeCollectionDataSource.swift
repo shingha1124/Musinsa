@@ -16,6 +16,8 @@ final class HomeCollectionDataSource: NSObject {
     
     private lazy var collectionLayout: UICollectionViewCompositionalLayout = {
         let layout = UICollectionViewCompositionalLayout(sectionProvider: self.layoutSection)
+        
+        layout.register(SectionBackgroundView.self, forDecorationViewOfKind: SectionBackgroundView.identifier)
         return layout
     }()
 }

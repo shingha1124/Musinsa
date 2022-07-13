@@ -61,6 +61,7 @@ final class GridGoodsViewCell: BaseCollectionViewCell, View {
     }
     
     override func layout() {
+        backgroundColor = .red
         contentView.addSubview(thumbnailView)
         contentView.addSubview(priceLabel)
         contentView.addSubview(brandName)

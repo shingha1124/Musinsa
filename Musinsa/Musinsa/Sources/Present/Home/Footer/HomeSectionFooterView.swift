@@ -19,7 +19,7 @@ final class HomeSectionFooterView: UICollectionReusableView, View {
         button.clipsToBounds = true
         button.layer.borderColor = UIColor.gray.cgColor
         button.layer.borderWidth = 1
-        button.layer.cornerRadius = 22
+        button.layer.cornerRadius = 18
         return button
     }()
     
@@ -52,7 +52,7 @@ final class HomeSectionFooterView: UICollectionReusableView, View {
         
         button.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.height.equalTo(44)
+            $0.height.equalTo(36)
         }
     }
 }

@@ -32,7 +32,6 @@ final class BannerSectionDataSource: SectionDataSource {
     lazy var section: NSCollectionLayoutSection = {
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .groupPaging
-        section.contentInsets = .init(top: 0, leading: 0, bottom: 10, trailing: 0)
         return section
     }()
     

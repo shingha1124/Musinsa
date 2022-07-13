@@ -9,7 +9,7 @@ import UIKit
 
 class ImageManager {
     
-    static let shared: ImageManager = ImageManager()
+    static let shared = ImageManager()
     
     private let imageCache = NSCache<NSString, UIImage>()
     

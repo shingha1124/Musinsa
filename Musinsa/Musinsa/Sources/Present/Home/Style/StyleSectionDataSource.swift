@@ -18,7 +18,6 @@ final class StyleSectionDataSource: SectionDataSource {
         let size = NSCollectionLayoutSize(widthDimension: width, heightDimension: height)
         
         let item = NSCollectionLayoutItem(layoutSize: size)
-        
         return item
     }()
     
@@ -27,13 +26,11 @@ final class StyleSectionDataSource: SectionDataSource {
         let height: NSCollectionLayoutDimension = .estimated(200)
         let size = NSCollectionLayoutSize(widthDimension: width, heightDimension: height)
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, subitems: [item])
-        
         return group
     }()
     
     lazy var section: NSCollectionLayoutSection = {
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = .init(top: 0, leading: 0, bottom: 10, trailing: 0)
         return section
     }()
     

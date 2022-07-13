@@ -28,14 +28,13 @@ final class ScrollGoodsSectionDataSource: SectionDataSource {
         let height: NSCollectionLayoutDimension = .estimated(200)
         let size = NSCollectionLayoutSize(widthDimension: width, heightDimension: height)
         let group = NSCollectionLayoutGroup.vertical(layoutSize: size, subitems: [item])
-        group.contentInsets = .init(top: 0, leading: 3, bottom: 0, trailing: 3)
         return group
     }()
     
     lazy var section: NSCollectionLayoutSection = {
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = .init(top: 0, leading: 0, bottom: 10, trailing: 0)
+        section.contentInsets = .init(top: 5, leading: 10, bottom: 10, trailing: 10)
         return section
     }()
     

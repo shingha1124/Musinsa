@@ -56,4 +56,3 @@ extension NSAttributedString {
         return NSAttributedString(string: string, attributes: attributes)
     }
 }
-

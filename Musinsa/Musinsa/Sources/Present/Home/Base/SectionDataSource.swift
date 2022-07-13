@@ -19,16 +19,18 @@ protocol SectionDataSource {
 extension SectionDataSource {
     func makeBoundarySupplementaryItem(sectionViewModel: SectionViewModel) {
         if sectionViewModel.header != nil {
-            section.boundarySupplementaryItems.append(
-                .init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50.0)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)
-            )
+            let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(70.0)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)
+            section.boundarySupplementaryItems.append(header)
         }
         
         if (sectionViewModel.type != .banner && sectionViewModel.type != .scroll),
             sectionViewModel.footer != nil {
-            section.boundarySupplementaryItems.append(
-                .init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50.0)), elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottom)
-            )
+            let footer = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(70.0)), elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottom)
+            section.boundarySupplementaryItems.append(footer)
         }
+        
+        section.decorationItems = [
+            .background(elementKind: SectionBackgroundView.identifier),
+        ]
     }
 }

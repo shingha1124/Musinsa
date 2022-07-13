@@ -9,7 +9,6 @@ import SnapKit
 import UIKit
 
 class HomeViewController: UIViewController, View {
-    
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: dataSource.layout)
         
@@ -20,6 +19,9 @@ class HomeViewController: UIViewController, View {
         
         collectionView.register(HomeSectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HomeSectionHeaderView.identifier)
         collectionView.register(HomeSectionFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: HomeSectionFooterView.identifier)
+        
+        collectionView.backgroundColor = .backGround2
+        collectionView.showsVerticalScrollIndicator = false
         return collectionView
     }()
     
@@ -53,7 +55,7 @@ class HomeViewController: UIViewController, View {
     }
     
     func attribute() {
-        view.backgroundColor = .white
+        view.backgroundColor = .backGround2
     }
     
     func layout() {

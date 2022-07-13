@@ -23,7 +23,7 @@ final class GridGoodsSectionViewModel: SectionViewModel {
     private var cellModels = [GridGoodsViewCellModel]()
     
     init(section: HomeSection) {
-        header =  HomeSectionHeaderViewModel(header: section.header)
+        header = HomeSectionHeaderViewModel(header: section.header)
         footer = HomeSectionFooterViewModel(footer: section.footer)
         type = section.contents.type
         
