@@ -23,6 +23,7 @@ final class HomeSectionFooterViewModel: ViewModel {
         guard let footer = footer else {
             return nil
         }
-        state = State(footer: footer)
+//        state = State(footer: footer)
+        state = State(footer: Footer(type: .more, title: "새로운 추천", iconURL: URL(string: "https://image.msscdn.net/icons/mobile/clock.png")))
     }
 }

@@ -24,7 +24,8 @@ extension SectionDataSource {
             )
         }
         
-        if sectionViewModel.footer != nil {
+        if (sectionViewModel.type != .banner && sectionViewModel.type != .scroll),
+            sectionViewModel.footer != nil {
             section.boundarySupplementaryItems.append(
                 .init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50.0)), elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottom)
             )

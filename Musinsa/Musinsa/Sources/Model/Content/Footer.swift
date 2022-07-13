@@ -14,6 +14,7 @@ struct Footer: Decodable {
 }
 
 extension Footer {
+    @frozen
     enum `Type`: String, Codable {
         case more = "MORE"
         case refresh = "REFRESH"
