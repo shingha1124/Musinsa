@@ -25,11 +25,17 @@ class HomeViewController: UIViewController, View {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        attribute()
         layout()
         
         collectionView.dataSource = dataSource
         
         viewModel?.action.viewDidLoad.accept(())
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
     func bind(to viewModel: HomeViewModel) {
@@ -41,6 +47,10 @@ class HomeViewController: UIViewController, View {
             .mainThread()
             .bind(onNext: collectionView.reloadData)
             .disposeBag(disposeBag)
+    }
+    
+    func attribute() {
+        view.backgroundColor = .white
     }
     
     func layout() {

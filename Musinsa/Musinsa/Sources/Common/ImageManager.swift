@@ -13,7 +13,7 @@ class ImageManager {
     
     private let imageCache = NSCache<NSString, UIImage>()
     
-    func loadImage(url: URL) async throws -> UIImage {
+    func loadImage(url: URL) async -> UIImage? {
         let imageName = url.lastPathComponent
         
         if let cacheImage = self.imageCache.object(forKey: imageName as NSString) {
@@ -32,12 +32,18 @@ class ImageManager {
             return image
         }
         
-        let (url, _) = try await URLSession.shared.download(from: url)
-        try? FileManager.default.copyItem(at: url, to: destination)
-        guard let image = UIImage(contentsOfFile: destination.path) else {
-            return UIImage()
+        let result = Task { () -> UIImage? in
+            guard let (url, _) = try? await URLSession.shared.download(from: url) else {
+                return nil
+            }
+            try? FileManager.default.copyItem(at: url, to: destination)
+            guard let image = UIImage(contentsOfFile: destination.path) else {
+                return UIImage()
+            }
+            self.imageCache.setObject(image, forKey: imageName as NSString)
+            return image
         }
-        self.imageCache.setObject(image, forKey: imageName as NSString)
-        return image
+        
+        return await result.value
     }
 }

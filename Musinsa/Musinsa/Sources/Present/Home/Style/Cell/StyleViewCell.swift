@@ -17,11 +17,7 @@ final class StyleViewCell: BaseCollectionViewCell, View {
     func bind(to viewModel: StyleViewCellModel) {
         let goods = viewModel.state.style
         Task {
-            guard let image = try? await ImageManager.shared.loadImage(url: goods.thumbnailURL) else {
-                return
-            }
-            
-            thumbnailView.image = image
+            thumbnailView.image = await ImageManager.shared.loadImage(url: goods.thumbnailURL)
         }
     }
     
