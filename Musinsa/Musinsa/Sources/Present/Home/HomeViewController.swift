@@ -14,7 +14,8 @@ class HomeViewController: UIViewController, View {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: dataSource.layout)
         
         collectionView.register(BannerViewCell.self, forCellWithReuseIdentifier: BannerViewCell.identifier)
-        collectionView.register(GoodsViewCell.self, forCellWithReuseIdentifier: GoodsViewCell.identifier)
+        collectionView.register(GridGoodsViewCell.self, forCellWithReuseIdentifier: GridGoodsViewCell.identifier)
+        collectionView.register(ScrollGoodsViewCell.self, forCellWithReuseIdentifier: ScrollGoodsViewCell.identifier)
         collectionView.register(StyleViewCell.self, forCellWithReuseIdentifier: StyleViewCell.identifier)
         return collectionView
     }()

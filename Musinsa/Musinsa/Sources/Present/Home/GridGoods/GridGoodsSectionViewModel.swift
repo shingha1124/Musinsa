@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class GoodsSectionViewModel: SectionViewModel {
+final class GridGoodsSectionViewModel: SectionViewModel {
     let type: Contents.`Type`
     let header: Header?
     let footer: Footer?
@@ -16,11 +16,11 @@ final class GoodsSectionViewModel: SectionViewModel {
         cellModels.count
     }
     
-    subscript(index: Int) -> GoodsViewCellModel {
+    subscript(index: Int) -> GridGoodsViewCellModel {
         cellModels[index]
     }
     
-    private var cellModels = [GoodsViewCellModel]()
+    private var cellModels = [GridGoodsViewCellModel]()
     
     init(section: HomeSection) {
         header = section.header
@@ -29,6 +29,6 @@ final class GoodsSectionViewModel: SectionViewModel {
         
         cellModels = section.contents.items
             .compactMap { $0 as? Goods }
-            .map { GoodsViewCellModel(content: $0) }
+            .map { GridGoodsViewCellModel(content: $0) }
     }
 }

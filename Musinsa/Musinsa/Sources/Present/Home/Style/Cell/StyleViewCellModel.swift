@@ -12,13 +12,14 @@ final class StyleViewCellModel: ViewModel {
     }
     
     struct State {
+        let style: Style
     }
     
     let action = Action()
-    let state = State()
+    let state: State
     let disposeBag = DisposeBag()
     
     init(content: Style) {
-        
+        state = State(style: content)        
     }
 }

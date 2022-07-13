@@ -7,19 +7,19 @@
 
 import Foundation
 
-final class BannerViewCellModel: ViewModel {
+final class GridGoodsViewCellModel: ViewModel {
     struct Action {
     }
     
     struct State {
-        let banner: Banner
+        let goods: Goods
     }
     
     let action = Action()
     let state: State
     let disposeBag = DisposeBag()
     
-    init(content: Banner) {
-        state = State(banner: content)
+    init(content: Goods) {
+        state = State(goods: content)
     }
 }

@@ -7,15 +7,15 @@
 
 import UIKit
 
-final class StyleViewCell: BaseCollectionViewCell, View {
+final class GridGoodsViewCell: BaseCollectionViewCell, View {
     
     private let thumbnailView: UIImageView = {
         let imageView = UIImageView()
         return imageView
     }()
-        
-    func bind(to viewModel: StyleViewCellModel) {
-        let goods = viewModel.state.style
+    
+    func bind(to viewModel: GridGoodsViewCellModel) {
+        let goods = viewModel.state.goods
         Task {
             guard let image = try? await ImageManager.shared.loadImage(url: goods.thumbnailURL) else {
                 return

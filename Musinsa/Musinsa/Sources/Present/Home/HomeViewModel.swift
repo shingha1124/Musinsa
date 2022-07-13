@@ -45,9 +45,9 @@ final class HomeViewModel: ViewModel {
                     case .banner:
                         return makeBannerViewModel(section: section)
                     case .grid:
-                        return makeGoodsViewModel(section: section)
+                        return makeGridGoodsViewModel(section: section)
                     case .scroll:
-                        return makeGoodsViewModel(section: section)
+                        return makeScrollGoodsViewModel(section: section)
                     case .style:
                         return makeStyleViewModel(section: section)
                     }
@@ -71,8 +71,13 @@ final class HomeViewModel: ViewModel {
         return viewModel
     }
     
-    private func makeGoodsViewModel(section: HomeSection) -> GoodsSectionViewModel {
-        let viewModel = GoodsSectionViewModel(section: section)
+    private func makeGridGoodsViewModel(section: HomeSection) -> GridGoodsSectionViewModel {
+        let viewModel = GridGoodsSectionViewModel(section: section)
+        return viewModel
+    }
+    
+    private func makeScrollGoodsViewModel(section: HomeSection) -> ScrollGoodsSectionViewModel {
+        let viewModel = ScrollGoodsSectionViewModel(section: section)
         return viewModel
     }
 }

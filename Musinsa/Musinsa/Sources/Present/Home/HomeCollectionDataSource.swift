@@ -27,9 +27,9 @@ extension HomeCollectionDataSource {
         case .banner:
             models.append(BannerSectionDataSource(sectionViewModel: model))
         case .grid:
-            models.append(GoodsSectionDataSource(sectionViewModel: model))
+            models.append(GridGoodsSectionDataSource(sectionViewModel: model))
         case .scroll:
-            models.append(GoodsSectionDataSource(sectionViewModel: model))
+            models.append(ScrollGoodsSectionDataSource(sectionViewModel: model))
         case .style:
             models.append(StyleSectionDataSource(sectionViewModel: model))
         }

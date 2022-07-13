@@ -8,17 +8,16 @@
 import Foundation
 import UIKit
 
-final class StyleSectionDataSource: SectionDataSource {
+final class GridGoodsSectionDataSource: SectionDataSource {
     
     private let item: NSCollectionLayoutItem = {
-        let fractionalWidth = 1.0 / 2.0
+        let fractionalWidth = 1.0 / 3.0
         let fractionalHeight = fractionalWidth * 1.5
         let width: NSCollectionLayoutDimension = .fractionalWidth(fractionalWidth)
         let height: NSCollectionLayoutDimension = .fractionalWidth(fractionalHeight)
         let size = NSCollectionLayoutSize(widthDimension: width, heightDimension: height)
         
         let item = NSCollectionLayoutItem(layoutSize: size)
-        
         return item
     }()
     
@@ -27,7 +26,6 @@ final class StyleSectionDataSource: SectionDataSource {
         let height: NSCollectionLayoutDimension = .estimated(200)
         let size = NSCollectionLayoutSize(widthDimension: width, heightDimension: height)
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, subitems: [item])
-        
         return group
     }()
     
@@ -38,17 +36,17 @@ final class StyleSectionDataSource: SectionDataSource {
     
     var itemCount: Int {
         let count = viewModel?.count ?? 0
-        return count > 4 ? 4 : count
+        return count > 6 ? 6 : count
     }
     
-    private let viewModel: StyleSectionViewModel?
+    private let viewModel: GridGoodsSectionViewModel?
     
     init(sectionViewModel: SectionViewModel) {
-        viewModel = sectionViewModel as? StyleSectionViewModel
+        viewModel = sectionViewModel as? GridGoodsSectionViewModel
     }
     
     func dequeueReusableCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StyleViewCell.identifier, for: indexPath) as? StyleViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GridGoodsViewCell.identifier, for: indexPath) as? GridGoodsViewCell else {
             return UICollectionViewCell()
         }
         

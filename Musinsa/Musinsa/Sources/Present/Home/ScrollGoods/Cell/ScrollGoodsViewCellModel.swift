@@ -7,18 +7,19 @@
 
 import Foundation
 
-final class GoodsViewCellModel: ViewModel {
+final class ScrollGoodsViewCellModel: ViewModel {
     struct Action {
     }
     
     struct State {
+        let goods: Goods
     }
     
     let action = Action()
-    let state = State()
+    let state: State
     let disposeBag = DisposeBag()
     
     init(content: Goods) {
-        
+        state = State(goods: content)
     }
 }
