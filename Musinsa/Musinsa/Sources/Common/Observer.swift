@@ -15,16 +15,26 @@ class PublishRelay<T>: Observer {
     typealias BinderElement = (T) -> Void
     
     private var binder: [BinderElement] = []
+    private var dispatch: DispatchQueue?
 
-    func bind(onNext: @escaping BinderElement) -> Observer {
+    func bind(onNext: @escaping BinderElement) -> PublishRelay<T> {
         binder.append(onNext)
         return self
     }
 
+    func mainThread() -> PublishRelay<T> {
+        dispatch = DispatchQueue.main
+        return self
+    }
+    
     func accept(_ value: T) {
-        binder.forEach {
-            $0(value)
+        if let dispatch = dispatch {
+            dispatch.async {
+                self.binder.forEach { $0(value) }
+            }
+            return
         }
+        binder.forEach { $0(value) }
     }
     
     func disposeBag(_ bag: DisposeBag) {

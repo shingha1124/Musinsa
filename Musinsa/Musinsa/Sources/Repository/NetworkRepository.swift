@@ -10,7 +10,7 @@ import Foundation
 class NetworkRepository<API: BaseAPI> {
     private var provider: URLSessionProvider?
     
-    func request(_ target: API, session: URLSessionProtocol = URLSession.shared, complate: @escaping (NetworkResult) -> Void) {
+    func request(_ target: API, session: URLSessionProtocol = URLSession.shared) async throws -> NetworkResult? {
         
         provider = URLSessionProvider(session: session)
         
@@ -18,8 +18,6 @@ class NetworkRepository<API: BaseAPI> {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = target.method
         
-        provider?.dataTask(request: urlRequest) { result in
-            complate(result)
-        }
+        return try await provider?.dataTask(request: urlRequest)
     }
 }

@@ -5,30 +5,48 @@
 //  Created by seongha shin on 2022/07/13.
 //
 
+import SnapKit
 import UIKit
 
 class HomeViewController: UIViewController, View {
     
     private lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionLayout)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: dataSource.layout)
         
+        collectionView.register(BannerViewCell.self, forCellWithReuseIdentifier: BannerViewCell.identifier)
+        collectionView.register(GoodsViewCell.self, forCellWithReuseIdentifier: GoodsViewCell.identifier)
+        collectionView.register(StyleViewCell.self, forCellWithReuseIdentifier: StyleViewCell.identifier)
         return collectionView
     }()
     
-    private let collectionLayout: UICollectionViewCompositionalLayout = {
-        let layout = UICollectionViewCompositionalLayout { section, env -> NSCollectionLayoutSection? in
-            return nil
-        }
-        
-        return layout
-    }()
+    private let dataSource = HomeCollectionDataSource()
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        layout()
+        
+        collectionView.dataSource = dataSource
         
         viewModel?.action.viewDidLoad.accept(())
     }
 
     func bind(to viewModel: HomeViewModel) {
+        viewModel.state.appendSection
+            .bind(onNext: dataSource.appendModel(_:))
+            .disposeBag(disposeBag)
+
+        viewModel.state.reloadData
+            .mainThread()
+            .bind(onNext: collectionView.reloadData)
+            .disposeBag(disposeBag)
+    }
+    
+    func layout() {
+        view.addSubview(collectionView)
+        
+        collectionView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
 }
