@@ -49,7 +49,13 @@ final class GridGoodsViewCell: BaseCollectionViewCell, View {
             thumbnailView.image = await ImageManager.shared.loadImage(url: goods.thumbnailURL)
         }
         
-        priceLabel.text = goods.price.convertToKRW(true)
+        priceLabel.attributedText = .appendAttributedString([
+            .stringToOption(goods.price.convertToKRW(true)),
+            .stringToOption(" \(goods.saleRate)%", attributes: [
+                .foreground(color: .red)
+            ])
+        ])
+        
         brandName.text = goods.brandName
     }
     

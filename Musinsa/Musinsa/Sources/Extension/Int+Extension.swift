@@ -8,7 +8,7 @@
 import Foundation
 
 extension Int {
-    func convertToKRW(_ useSuffix: Bool) -> String? {
+    func convertToKRW(_ useSuffix: Bool) -> String {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = useSuffix ? .decimal : .currency
         numberFormatter.locale = Locale(identifier: "ko_KR")

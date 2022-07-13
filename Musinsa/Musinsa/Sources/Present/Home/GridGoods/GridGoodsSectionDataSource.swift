@@ -31,6 +31,7 @@ final class GridGoodsSectionDataSource: SectionDataSource {
     
     lazy var section: NSCollectionLayoutSection = {
         let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = .init(top: 0, leading: 3, bottom: 0, trailing: 3)
         return section
     }()
     
