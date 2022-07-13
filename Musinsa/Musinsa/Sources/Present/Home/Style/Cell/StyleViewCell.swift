@@ -11,6 +11,7 @@ final class StyleViewCell: BaseCollectionViewCell, View {
     
     private let thumbnailView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
         

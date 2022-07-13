@@ -17,6 +17,9 @@ class HomeViewController: UIViewController, View {
         collectionView.register(GridGoodsViewCell.self, forCellWithReuseIdentifier: GridGoodsViewCell.identifier)
         collectionView.register(ScrollGoodsViewCell.self, forCellWithReuseIdentifier: ScrollGoodsViewCell.identifier)
         collectionView.register(StyleViewCell.self, forCellWithReuseIdentifier: StyleViewCell.identifier)
+        
+        collectionView.register(HomeSectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HomeSectionHeaderView.identifier)
+        collectionView.register(HomeSectionFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: HomeSectionFooterView.identifier)
         return collectionView
     }()
     

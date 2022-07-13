@@ -9,8 +9,8 @@ import Foundation
 
 final class StyleSectionViewModel: SectionViewModel {
     let type: Contents.`Type`
-    let header: Header?
-    let footer: Footer?
+    let header: HomeSectionHeaderViewModel?
+    let footer: HomeSectionFooterViewModel?
     
     var count: Int {
         cellModels.count
@@ -23,8 +23,8 @@ final class StyleSectionViewModel: SectionViewModel {
     private var cellModels = [StyleViewCellModel]()
     
     init(section: HomeSection) {
-        header = section.header
-        footer = section.footer
+        header = HomeSectionHeaderViewModel(header: section.header)
+        footer = HomeSectionFooterViewModel(footer: section.footer)
         type = section.contents.type
         
         cellModels = section.contents.items

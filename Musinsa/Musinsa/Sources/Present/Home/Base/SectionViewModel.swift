@@ -8,8 +8,8 @@
 import Foundation
 
 protocol SectionViewModel {
-    var header: Header? { get }
-    var footer: Footer? { get }
+    var header: HomeSectionHeaderViewModel? { get }
+    var footer: HomeSectionFooterViewModel? { get }
     var type: Contents.`Type` { get }
     var count: Int { get }
 }

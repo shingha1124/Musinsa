@@ -33,6 +33,7 @@ final class StyleSectionDataSource: SectionDataSource {
     
     lazy var section: NSCollectionLayoutSection = {
         let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = .init(top: 0, leading: 0, bottom: 10, trailing: 0)
         return section
     }()
     
@@ -41,10 +42,19 @@ final class StyleSectionDataSource: SectionDataSource {
         return count > 4 ? 4 : count
     }
     
+    var header: HomeSectionHeaderViewModel? {
+        viewModel?.header
+    }
+    
+    var footer: HomeSectionFooterViewModel? {
+        viewModel?.footer
+    }
+    
     private let viewModel: StyleSectionViewModel?
     
     init(sectionViewModel: SectionViewModel) {
         viewModel = sectionViewModel as? StyleSectionViewModel
+        makeBoundarySupplementaryItem(sectionViewModel: sectionViewModel)
     }
     
     func dequeueReusableCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

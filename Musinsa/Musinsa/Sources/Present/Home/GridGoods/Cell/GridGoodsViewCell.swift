@@ -57,6 +57,7 @@ final class GridGoodsViewCell: BaseCollectionViewCell, View {
         ])
         
         brandName.text = goods.brandName
+        coupon.isHidden = goods.hasCoupon
     }
     
     override func layout() {

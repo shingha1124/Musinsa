@@ -57,6 +57,7 @@ final class ScrollGoodsViewCell: BaseCollectionViewCell, View {
         ])
         
         brandName.text = goods.brandName
+        coupon.isHidden = goods.hasCoupon
     }
     
     override func layout() {
@@ -68,7 +69,7 @@ final class ScrollGoodsViewCell: BaseCollectionViewCell, View {
         thumbnailView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(2)
             $0.width.equalToSuperview().inset(2)
-            $0.bottom.equalTo(priceLabel.snp.top).offset(-5)
+            $0.bottom.equalTo(brandName.snp.top).offset(-5)
         }
         
         priceLabel.snp.makeConstraints {

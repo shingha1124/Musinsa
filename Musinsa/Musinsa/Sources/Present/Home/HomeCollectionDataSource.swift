@@ -53,4 +53,20 @@ extension HomeCollectionDataSource: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         models[indexPath.section].dequeueReusableCell(collectionView, cellForItemAt: indexPath)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionHeader {
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HomeSectionHeaderView.identifier, for: indexPath) as? HomeSectionHeaderView else {
+                return UICollectionReusableView()
+            }
+            header.viewModel = models[indexPath.section].header
+            return header
+        } else {
+            guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HomeSectionFooterView.identifier, for: indexPath) as? HomeSectionFooterView else {
+                return UICollectionReusableView()
+            }
+            footer.viewModel = models[indexPath.section].footer
+            return footer
+        }
+    }
 }

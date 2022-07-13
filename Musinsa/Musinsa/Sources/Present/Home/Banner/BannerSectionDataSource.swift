@@ -32,6 +32,7 @@ final class BannerSectionDataSource: SectionDataSource {
     lazy var section: NSCollectionLayoutSection = {
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .groupPaging
+        section.contentInsets = .init(top: 0, leading: 0, bottom: 10, trailing: 0)
         return section
     }()
     
@@ -39,10 +40,19 @@ final class BannerSectionDataSource: SectionDataSource {
         viewModel?.count ?? 0
     }
     
+    var header: HomeSectionHeaderViewModel? {
+        viewModel?.header
+    }
+    
+    var footer: HomeSectionFooterViewModel? {
+        viewModel?.footer
+    }
+    
     private let viewModel: BannerSectionViewModel?
     
     init(sectionViewModel: SectionViewModel) {
         viewModel = sectionViewModel as? BannerSectionViewModel
+        makeBoundarySupplementaryItem(sectionViewModel: sectionViewModel)
     }
     
     func dequeueReusableCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
