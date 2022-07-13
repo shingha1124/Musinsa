@@ -1,0 +1,559 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AFCC6971587A911CE9E4467C /* Pods_Musinsa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2DDFE7B63F2408CE845A824 /* Pods_Musinsa.framework */; };
+		E0A2AE56287E4B2F00C93CB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A2AE55287E4B2F00C93CB1 /* AppDelegate.swift */; };
+		E0A2AE58287E4B2F00C93CB1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A2AE57287E4B2F00C93CB1 /* SceneDelegate.swift */; };
+		E0A2AE5A287E4B2F00C93CB1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A2AE59287E4B2F00C93CB1 /* HomeViewController.swift */; };
+		E0A2AE5F287E4B3000C93CB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0A2AE5E287E4B3000C93CB1 /* Assets.xcassets */; };
+		E0A2AE6F287E4EEA00C93CB1 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A2AE6E287E4EEA00C93CB1 /* HomeViewModel.swift */; };
+		E0A2AE74287E4F2600C93CB1 /* MVVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A2AE73287E4F2600C93CB1 /* MVVM.swift */; };
+		E0A2AE77287E532700C93CB1 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A2AE76287E532700C93CB1 /* Observer.swift */; };
+		E0A2AE7B287E594400C93CB1 /* NetworkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A2AE7A287E594400C93CB1 /* NetworkRepository.swift */; };
+		E0A2AE7F287E5B8500C93CB1 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A2AE7E287E5B8500C93CB1 /* BaseAPI.swift */; };
+		E0A2AE81287E5D8A00C93CB1 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A2AE80287E5D8A00C93CB1 /* URLSessionProtocol.swift */; };
+		E0A2AE83287E5E0C00C93CB1 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A2AE82287E5E0C00C93CB1 /* NetworkResult.swift */; };
+		E0A2AE86287E5F8B00C93CB1 /* URLSessionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A2AE85287E5F8B00C93CB1 /* URLSessionProvider.swift */; };
+		E0A2AE88287E613600C93CB1 /* MusinsaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A2AE87287E613600C93CB1 /* MusinsaAPI.swift */; };
+		E0A2AE8A287E61A800C93CB1 /* MusinsaRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A2AE89287E61A800C93CB1 /* MusinsaRepository.swift */; };
+		E0A2AE8C287E639600C93CB1 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A2AE8B287E639600C93CB1 /* HomeModel.swift */; };
+		E0A2AE8E287E65F300C93CB1 /* APIResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A2AE8D287E65F300C93CB1 /* APIResult.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3FEEC1CE7A89B45B53FE3382 /* Pods-Musinsa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Musinsa.release.xcconfig"; path = "Target Support Files/Pods-Musinsa/Pods-Musinsa.release.xcconfig"; sourceTree = "<group>"; };
+		96DDCA74588633B563B5BD1D /* Pods-Musinsa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Musinsa.debug.xcconfig"; path = "Target Support Files/Pods-Musinsa/Pods-Musinsa.debug.xcconfig"; sourceTree = "<group>"; };
+		C2DDFE7B63F2408CE845A824 /* Pods_Musinsa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Musinsa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0A2AE52287E4B2F00C93CB1 /* Musinsa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Musinsa.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0A2AE55287E4B2F00C93CB1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E0A2AE57287E4B2F00C93CB1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		E0A2AE59287E4B2F00C93CB1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		E0A2AE5E287E4B3000C93CB1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E0A2AE63287E4B3000C93CB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E0A2AE6E287E4EEA00C93CB1 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		E0A2AE73287E4F2600C93CB1 /* MVVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVM.swift; sourceTree = "<group>"; };
+		E0A2AE76287E532700C93CB1 /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
+		E0A2AE7A287E594400C93CB1 /* NetworkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepository.swift; sourceTree = "<group>"; };
+		E0A2AE7E287E5B8500C93CB1 /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
+		E0A2AE80287E5D8A00C93CB1 /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
+		E0A2AE82287E5E0C00C93CB1 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
+		E0A2AE85287E5F8B00C93CB1 /* URLSessionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProvider.swift; sourceTree = "<group>"; };
+		E0A2AE87287E613600C93CB1 /* MusinsaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusinsaAPI.swift; sourceTree = "<group>"; };
+		E0A2AE89287E61A800C93CB1 /* MusinsaRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusinsaRepository.swift; sourceTree = "<group>"; };
+		E0A2AE8B287E639600C93CB1 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		E0A2AE8D287E65F300C93CB1 /* APIResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResult.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E0A2AE4F287E4B2F00C93CB1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFCC6971587A911CE9E4467C /* Pods_Musinsa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		312328F211DEAC09B4497044 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				96DDCA74588633B563B5BD1D /* Pods-Musinsa.debug.xcconfig */,
+				3FEEC1CE7A89B45B53FE3382 /* Pods-Musinsa.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		4ECC54F868B9D58FF1BDBF8D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C2DDFE7B63F2408CE845A824 /* Pods_Musinsa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E0A2AE49287E4B2F00C93CB1 = {
+			isa = PBXGroup;
+			children = (
+				E0A2AE54287E4B2F00C93CB1 /* Musinsa */,
+				E0A2AE53287E4B2F00C93CB1 /* Products */,
+				312328F211DEAC09B4497044 /* Pods */,
+				4ECC54F868B9D58FF1BDBF8D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		E0A2AE53287E4B2F00C93CB1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E0A2AE52287E4B2F00C93CB1 /* Musinsa.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E0A2AE54287E4B2F00C93CB1 /* Musinsa */ = {
+			isa = PBXGroup;
+			children = (
+				E0A2AE6A287E4C1600C93CB1 /* Sources */,
+				E0A2AE6B287E4C1D00C93CB1 /* Resources */,
+				E0A2AE69287E4C0E00C93CB1 /* Configuration */,
+			);
+			path = Musinsa;
+			sourceTree = "<group>";
+		};
+		E0A2AE69287E4C0E00C93CB1 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				E0A2AE63287E4B3000C93CB1 /* Info.plist */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		E0A2AE6A287E4C1600C93CB1 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				E0A2AE6D287E4D8300C93CB1 /* Model */,
+				E0A2AE7C287E5B6D00C93CB1 /* API */,
+				E0A2AE79287E590000C93CB1 /* Repository */,
+				E0A2AE75287E531C00C93CB1 /* Common */,
+				E0A2AE6C287E4CE000C93CB1 /* Present */,
+				E0A2AE55287E4B2F00C93CB1 /* AppDelegate.swift */,
+				E0A2AE57287E4B2F00C93CB1 /* SceneDelegate.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		E0A2AE6B287E4C1D00C93CB1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E0A2AE5E287E4B3000C93CB1 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E0A2AE6C287E4CE000C93CB1 /* Present */ = {
+			isa = PBXGroup;
+			children = (
+				E0A2AE71287E4F1800C93CB1 /* MVVM */,
+				E0A2AE70287E4F0A00C93CB1 /* Home */,
+			);
+			path = Present;
+			sourceTree = "<group>";
+		};
+		E0A2AE6D287E4D8300C93CB1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E0A2AE8B287E639600C93CB1 /* HomeModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E0A2AE70287E4F0A00C93CB1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				E0A2AE59287E4B2F00C93CB1 /* HomeViewController.swift */,
+				E0A2AE6E287E4EEA00C93CB1 /* HomeViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		E0A2AE71287E4F1800C93CB1 /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				E0A2AE73287E4F2600C93CB1 /* MVVM.swift */,
+			);
+			path = MVVM;
+			sourceTree = "<group>";
+		};
+		E0A2AE75287E531C00C93CB1 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				E0A2AE76287E532700C93CB1 /* Observer.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		E0A2AE79287E590000C93CB1 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				E0A2AE84287E5F8300C93CB1 /* Base */,
+				E0A2AE7A287E594400C93CB1 /* NetworkRepository.swift */,
+				E0A2AE89287E61A800C93CB1 /* MusinsaRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		E0A2AE7C287E5B6D00C93CB1 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				E0A2AE7E287E5B8500C93CB1 /* BaseAPI.swift */,
+				E0A2AE87287E613600C93CB1 /* MusinsaAPI.swift */,
+				E0A2AE8D287E65F300C93CB1 /* APIResult.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		E0A2AE84287E5F8300C93CB1 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				E0A2AE80287E5D8A00C93CB1 /* URLSessionProtocol.swift */,
+				E0A2AE82287E5E0C00C93CB1 /* NetworkResult.swift */,
+				E0A2AE85287E5F8B00C93CB1 /* URLSessionProvider.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E0A2AE51287E4B2F00C93CB1 /* Musinsa */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E0A2AE66287E4B3000C93CB1 /* Build configuration list for PBXNativeTarget "Musinsa" */;
+			buildPhases = (
+				4802B3E8584A9B002D2EB661 /* [CP] Check Pods Manifest.lock */,
+				E0A2AE4E287E4B2F00C93CB1 /* Sources */,
+				E0A2AE4F287E4B2F00C93CB1 /* Frameworks */,
+				E0A2AE50287E4B2F00C93CB1 /* Resources */,
+				7FB2FD56A5C0060BC81B4DC4 /* [CP] Embed Pods Frameworks */,
+				E0A2AE78287E55E200C93CB1 /* Swiftlint */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Musinsa;
+			productName = Musinsa;
+			productReference = E0A2AE52287E4B2F00C93CB1 /* Musinsa.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E0A2AE4A287E4B2F00C93CB1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1330;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					E0A2AE51287E4B2F00C93CB1 = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
+				};
+			};
+			buildConfigurationList = E0A2AE4D287E4B2F00C93CB1 /* Build configuration list for PBXProject "Musinsa" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E0A2AE49287E4B2F00C93CB1;
+			productRefGroup = E0A2AE53287E4B2F00C93CB1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E0A2AE51287E4B2F00C93CB1 /* Musinsa */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E0A2AE50287E4B2F00C93CB1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E0A2AE5F287E4B3000C93CB1 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4802B3E8584A9B002D2EB661 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Musinsa-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7FB2FD56A5C0060BC81B4DC4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Musinsa/Pods-Musinsa-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Musinsa/Pods-Musinsa-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Musinsa/Pods-Musinsa-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E0A2AE78287E55E200C93CB1 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E0A2AE4E287E4B2F00C93CB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E0A2AE8A287E61A800C93CB1 /* MusinsaRepository.swift in Sources */,
+				E0A2AE81287E5D8A00C93CB1 /* URLSessionProtocol.swift in Sources */,
+				E0A2AE83287E5E0C00C93CB1 /* NetworkResult.swift in Sources */,
+				E0A2AE7B287E594400C93CB1 /* NetworkRepository.swift in Sources */,
+				E0A2AE5A287E4B2F00C93CB1 /* HomeViewController.swift in Sources */,
+				E0A2AE77287E532700C93CB1 /* Observer.swift in Sources */,
+				E0A2AE8E287E65F300C93CB1 /* APIResult.swift in Sources */,
+				E0A2AE88287E613600C93CB1 /* MusinsaAPI.swift in Sources */,
+				E0A2AE74287E4F2600C93CB1 /* MVVM.swift in Sources */,
+				E0A2AE56287E4B2F00C93CB1 /* AppDelegate.swift in Sources */,
+				E0A2AE86287E5F8B00C93CB1 /* URLSessionProvider.swift in Sources */,
+				E0A2AE8C287E639600C93CB1 /* HomeModel.swift in Sources */,
+				E0A2AE7F287E5B8500C93CB1 /* BaseAPI.swift in Sources */,
+				E0A2AE58287E4B2F00C93CB1 /* SceneDelegate.swift in Sources */,
+				E0A2AE6F287E4EEA00C93CB1 /* HomeViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		E0A2AE64287E4B3000C93CB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E0A2AE65287E4B3000C93CB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E0A2AE67287E4B3000C93CB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 96DDCA74588633B563B5BD1D /* Pods-Musinsa.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4JAAT559ZA;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Musinsa/Configuration/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.musinsa.test.Musinsa;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		E0A2AE68287E4B3000C93CB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3FEEC1CE7A89B45B53FE3382 /* Pods-Musinsa.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4JAAT559ZA;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Musinsa/Configuration/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.musinsa.test.Musinsa;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E0A2AE4D287E4B2F00C93CB1 /* Build configuration list for PBXProject "Musinsa" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E0A2AE64287E4B3000C93CB1 /* Debug */,
+				E0A2AE65287E4B3000C93CB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E0A2AE66287E4B3000C93CB1 /* Build configuration list for PBXNativeTarget "Musinsa" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E0A2AE67287E4B3000C93CB1 /* Debug */,
+				E0A2AE68287E4B3000C93CB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E0A2AE4A287E4B2F00C93CB1 /* Project object */;
+}
