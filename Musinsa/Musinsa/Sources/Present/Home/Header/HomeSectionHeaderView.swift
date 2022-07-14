@@ -54,6 +54,11 @@ final class HomeSectionHeaderView: UICollectionReusableView, View {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        seeAll.removeTarget(nil, action: nil, for: .allEvents)
+    }
+    
     func bind(to viewModel: HomeSectionHeaderViewModel) {
         let header = viewModel.state.header
         title.text = header.title
@@ -64,6 +69,10 @@ final class HomeSectionHeaderView: UICollectionReusableView, View {
                 icon.image = await ImageManager.shared.loadImage(url: iconUrl)
             }
         }
+        
+        seeAll.addAction(UIAction { _ in
+            viewModel.action.tappedSeeAll.accept(header)
+        }, for: .touchUpInside)
     }
     
     func layout() {

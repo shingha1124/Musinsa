@@ -8,16 +8,15 @@
 import Foundation
 import UIKit
 
-final class StyleSectionDataSource: SectionDataSource {
+final class BannerSectionDataSource: SectionDataSource {
     
     private let item: NSCollectionLayoutItem = {
-        let fractionalWidth = 1.0 / 2.0
-        let fractionalHeight = fractionalWidth * 1.5
-        let width: NSCollectionLayoutDimension = .fractionalWidth(fractionalWidth)
-        let height: NSCollectionLayoutDimension = .fractionalWidth(fractionalHeight)
+        let width: NSCollectionLayoutDimension = .fractionalWidth(1)
+        let height: NSCollectionLayoutDimension = .fractionalWidth(1)
         let size = NSCollectionLayoutSize(widthDimension: width, heightDimension: height)
         
         let item = NSCollectionLayoutItem(layoutSize: size)
+        
         return item
     }()
     
@@ -26,49 +25,46 @@ final class StyleSectionDataSource: SectionDataSource {
         let height: NSCollectionLayoutDimension = .estimated(200)
         let size = NSCollectionLayoutSize(widthDimension: width, heightDimension: height)
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, subitems: [item])
+        
         return group
     }()
     
     lazy var section: NSCollectionLayoutSection = {
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = .init(top: 5, leading: 10, bottom: 15, trailing: 10)
-        section.decorationItems = [
-            .background(elementKind: WidthInsetBackgroundView.identifier)
-        ]
+        section.orthogonalScrollingBehavior = .groupPaging
+        section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: -230)
         return section
     }()
     
     var itemCount: Int {
-        let count = viewModel?.count ?? 0
-        return count > 4 ? 4 : count
+        viewModel.count
     }
     
     var header: HomeSectionHeaderViewModel? {
-        viewModel?.header
+        viewModel.header
     }
     
     var footer: HomeSectionFooterViewModel? {
-        viewModel?.footer
+        viewModel.footer
     }
     
     var type: Contents.`Type` {
-        viewModel?.type ?? .banner
+        viewModel.type
     }
     
-    private let viewModel: StyleSectionViewModel?
+    private let viewModel: SectionViewModel
+    private let disposeBag = DisposeBag()
     
     init(sectionViewModel: SectionViewModel) {
-        viewModel = sectionViewModel as? StyleSectionViewModel
-        makeHeaderItem(header: sectionViewModel.header)
-        makeFooterItem(footer: sectionViewModel.footer)
+        viewModel = sectionViewModel
     }
     
     func dequeueReusableCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StyleViewCell.identifier, for: indexPath) as? StyleViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BannerViewCell.identifier, for: indexPath) as? BannerViewCell else {
             return UICollectionViewCell()
         }
         
-        cell.viewModel = viewModel?[indexPath.item]
+        cell.viewModel = viewModel[indexPath.item]
         return cell
     }
 }

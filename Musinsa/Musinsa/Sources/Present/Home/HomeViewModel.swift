@@ -15,6 +15,8 @@ final class HomeViewModel: ViewModel {
     struct State {
         let appendSection = PublishRelay<SectionViewModel>()
         let reloadData = PublishRelay<Void>()
+        let reloadSection = PublishRelay<Int>()
+        let openUrl = PublishRelay<URL>()
     }
     
     let action = Action()
@@ -36,43 +38,53 @@ final class HomeViewModel: ViewModel {
                 return
             }
             
-            recive.value?.data
-                .map { section -> SectionViewModel in
-                    switch section.contents.type {
-                    case .banner:
-                        return makeBannerViewModel(section: section)
-                    case .grid:
-                        return makeGridGoodsViewModel(section: section)
-                    case .scroll:
-                        return makeScrollGoodsViewModel(section: section)
-                    case .style:
-                        return makeStyleViewModel(section: section)
+            guard let homeModel = recive.value else {
+                return
+            }
+            
+            let sectionViewModels = homeModel.data
+                .map { SectionViewModel(section: $0) }
+            
+            let tappedContent = sectionViewModels.flatMap {
+                $0.items.map { $0.action.tappedContent }
+            }
+            
+            tappedContent.forEach {
+                $0.bind(onNext: { [weak self] content in
+                    self?.state.openUrl.accept(content.linkURL)
+                })
+                .disposeBag(disposeBag)
+            }
+            
+            let tappedSeeAll = sectionViewModels.compactMap {
+                $0.header?.action.tappedSeeAll
+            }
+            
+            tappedSeeAll.forEach {
+                $0.bind(onNext: { [weak self] header in
+                    if let url = header.linkURL {
+                        self?.state.openUrl.accept(url)
                     }
-                }.forEach {
-                    state.appendSection.accept($0)
-                }
+                })
+                .disposeBag(disposeBag)
+            }
+            
+            let reloadSection = sectionViewModels.enumerated().compactMap { index, model in
+                (index, model.reloadSection)
+            }
+            
+            reloadSection.forEach { index, event in
+                event.bind(onNext: { [weak self] _ in
+                    self?.state.reloadSection.accept(index)
+                })
+                .disposeBag(disposeBag)
+            }
+            
+            sectionViewModels.forEach {
+                state.appendSection.accept($0)
+            }
             
             state.reloadData.accept(())
         }
-    }
-    
-    private func makeBannerViewModel(section: HomeSection) -> BannerSectionViewModel {
-        let viewModel = BannerSectionViewModel(section: section)
-        return viewModel
-    }
-    
-    private func makeStyleViewModel(section: HomeSection) -> StyleSectionViewModel {
-        let viewModel = StyleSectionViewModel(section: section)
-        return viewModel
-    }
-    
-    private func makeGridGoodsViewModel(section: HomeSection) -> GridGoodsSectionViewModel {
-        let viewModel = GridGoodsSectionViewModel(section: section)
-        return viewModel
-    }
-    
-    private func makeScrollGoodsViewModel(section: HomeSection) -> ScrollGoodsSectionViewModel {
-        let viewModel = ScrollGoodsSectionViewModel(section: section)
-        return viewModel
     }
 }

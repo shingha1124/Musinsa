@@ -33,6 +33,11 @@ final class HomeSectionFooterView: UICollectionReusableView, View {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        button.removeTarget(nil, action: nil, for: .allEvents)
+    }
+    
     func bind(to viewModel: HomeSectionFooterViewModel) {
         let footer = viewModel.state.footer
                 
@@ -45,6 +50,10 @@ final class HomeSectionFooterView: UICollectionReusableView, View {
         }
         
         button.configuration?.title = footer.title
+        
+        button.addAction(UIAction { _ in
+            viewModel.action.tappedFooter.accept(footer)
+        }, for: .touchUpInside)
     }
     
     func layout() {

@@ -40,28 +40,39 @@ final class GridGoodsSectionDataSource: SectionDataSource {
     }()
     
     var itemCount: Int {
-        let count = viewModel?.count ?? 0
-        return count > 6 ? 6 : count
+        currentViewCount
     }
     
     var header: HomeSectionHeaderViewModel? {
-        viewModel?.header
+        viewModel.header
     }
     
     var footer: HomeSectionFooterViewModel? {
-        viewModel?.footer
+        viewModel.footer
     }
     
     var type: Contents.`Type` {
-        viewModel?.type ?? .banner
+        viewModel.type
     }
     
-    private let viewModel: GridGoodsSectionViewModel?
+    private let viewModel: SectionViewModel
+    private let disposeBag = DisposeBag()
+    
+    private let addViewCount = 6
+    private var currentViewCount = 6
     
     init(sectionViewModel: SectionViewModel) {
-        viewModel = sectionViewModel as? GridGoodsSectionViewModel
+        viewModel = sectionViewModel
         makeHeaderItem(header: sectionViewModel.header)
         makeFooterItem(footer: sectionViewModel.footer)
+        
+        viewModel.addViewCount
+            .bind(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                let stackCount = self.currentViewCount + self.addViewCount
+                self.currentViewCount = min(stackCount, self.viewModel.count)
+            })
+            .disposeBag(disposeBag)
     }
     
     func dequeueReusableCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -69,7 +80,7 @@ final class GridGoodsSectionDataSource: SectionDataSource {
             return UICollectionViewCell()
         }
         
-        cell.viewModel = viewModel?[indexPath.item]
+        cell.viewModel = viewModel[indexPath.item]
         return cell
     }
 }

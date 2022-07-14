@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Contents: Content {
+struct Contents: Decodable {
     let type: `Type`
     let items: [Content]
     
@@ -57,4 +57,6 @@ extension Contents {
 }
 
 protocol Content: Decodable {
+    var linkURL: URL { get }
+    var thumbnailURL: URL { get }
 }

@@ -30,12 +30,10 @@ final class HomeCollectionDataSource: NSObject {
 
 extension HomeCollectionDataSource: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
-        
         if elementKind == WidthInsetBackgroundView.identifier {
             let backgroundView = view as? WidthInsetBackgroundView
             backgroundView?.sectionType(models[indexPath.section].type)
         }
-//        models[indexPath.section].willDisplaySupplementaryView(collectionView, willDisplaySupplementaryView: view, forElementKind: elementKind, at: indexPath)
     }
 }
 

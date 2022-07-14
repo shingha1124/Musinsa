@@ -9,6 +9,7 @@ import Foundation
 
 final class HomeSectionHeaderViewModel: ViewModel {
     struct Action {
+        let tappedSeeAll = PublishRelay<Header>()
     }
     
     struct State {

@@ -44,8 +44,12 @@ final class BannerViewCell: BaseCollectionViewCell, View {
         return label
     }()
     
-    func bind(to viewModel: BannerViewCellModel) {
-        let banner = viewModel.state.banner
+    private let button = UIButton()
+    
+    func bind(to viewModel: SectionCellViewModel) {
+        guard let banner = viewModel.state.content as? Banner else {
+            return
+        }
         Task {
             bannerView.image = await ImageManager.shared.loadImage(url: banner.thumbnailURL)
         }
@@ -56,6 +60,10 @@ final class BannerViewCell: BaseCollectionViewCell, View {
         descriptionLabel.isHidden = banner.description.isEmpty
         keyword.text = banner.keyword
         keyword.isHidden = banner.keyword.isEmpty
+        
+        button.addAction(UIAction { _ in
+            viewModel.action.tappedContent.accept(banner)
+        }, for: .touchUpInside)
     }
     
     override func layout() {
@@ -63,6 +71,7 @@ final class BannerViewCell: BaseCollectionViewCell, View {
         contentView.addSubview(keyword)
         contentView.addSubview(title)
         contentView.addSubview(descriptionLabel)
+        contentView.addSubview(button)
         
         bannerView.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -81,6 +90,10 @@ final class BannerViewCell: BaseCollectionViewCell, View {
         keyword.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.top.equalToSuperview().offset(20)
+        }
+        
+        button.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
 }

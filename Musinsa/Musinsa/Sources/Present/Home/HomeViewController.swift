@@ -60,6 +60,18 @@ class HomeViewController: UIViewController, View {
             .mainThread()
             .bind(onNext: collectionView.reloadData)
             .disposeBag(disposeBag)
+        
+        viewModel.state.openUrl
+            .bind(onNext: {
+                UIApplication.shared.open($0)
+            })
+            .disposeBag(disposeBag)
+        
+        viewModel.state.reloadSection
+            .bind(onNext: { [weak self] section in
+                self?.collectionView.reloadSections(IndexSet(integer: section))
+            })
+            .disposeBag(disposeBag)
     }
     
     func attribute() {

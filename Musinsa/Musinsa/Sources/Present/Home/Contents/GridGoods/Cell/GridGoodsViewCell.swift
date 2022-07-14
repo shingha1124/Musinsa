@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ScrollGoodsViewCell: BaseCollectionViewCell, View {
+final class GridGoodsViewCell: BaseCollectionViewCell, View {
     
     private let thumbnailView: UIImageView = {
         let imageView = UIImageView()
@@ -43,21 +43,29 @@ final class ScrollGoodsViewCell: BaseCollectionViewCell, View {
         return label
     }()
     
-    func bind(to viewModel: ScrollGoodsViewCellModel) {
-        let goods = viewModel.state.goods
+    private let button = UIButton()
+    
+    func bind(to viewModel: SectionCellViewModel) {
+        guard let goods = viewModel.state.content as? Goods else {
+            return
+        }
         Task {
             thumbnailView.image = await ImageManager.shared.loadImage(url: goods.thumbnailURL)
         }
         
         priceLabel.attributedText = .appendAttributedString([
             .stringToOption(goods.price.convertToKRW(true)),
-            .stringToOption("\t\(goods.saleRate)%", attributes: [
+            .stringToOption(" \(goods.saleRate)%", attributes: [
                 .foreground(color: .red)
             ])
         ])
         
         brandName.text = goods.brandName
         coupon.isHidden = goods.hasCoupon
+        
+        button.addAction(UIAction { _ in
+            viewModel.action.tappedContent.accept(goods)
+        }, for: .touchUpInside)
     }
     
     override func layout() {
@@ -65,6 +73,7 @@ final class ScrollGoodsViewCell: BaseCollectionViewCell, View {
         contentView.addSubview(priceLabel)
         contentView.addSubview(brandName)
         contentView.addSubview(coupon)
+        contentView.addSubview(button)
         
         thumbnailView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(2)
@@ -75,7 +84,7 @@ final class ScrollGoodsViewCell: BaseCollectionViewCell, View {
         priceLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(5)
             $0.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(5)
+            $0.bottom.equalToSuperview()
         }
         
         brandName.snp.makeConstraints {
@@ -87,6 +96,10 @@ final class ScrollGoodsViewCell: BaseCollectionViewCell, View {
         coupon.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(10)
             $0.bottom.equalTo(brandName.snp.top).offset(-5)
+        }
+        
+        button.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
 }
