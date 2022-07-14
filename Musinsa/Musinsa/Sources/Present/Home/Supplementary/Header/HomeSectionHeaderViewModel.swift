@@ -21,9 +21,7 @@ final class HomeSectionHeaderViewModel: ViewModel {
     let disposeBag = DisposeBag()
     
     init?(header: Header?) {
-        guard let header = header else {
-            return nil
-        }
+        guard let header = header else { return nil }
         state = State(header: header)
     }
 }

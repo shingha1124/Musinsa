@@ -22,7 +22,7 @@ final class BannerSectionViewModel: SectionViewModel, ViewModel {
     
     let action = Action()
     let state: State
-    let type: Contents.`Type`
+    let type: Contents.`Type` = .banner
         
     subscript(index: Int) -> SectionCellViewModel {
         cellModels[index]
@@ -32,7 +32,6 @@ final class BannerSectionViewModel: SectionViewModel, ViewModel {
     private let disposeBag = DisposeBag()
     
     init(section: HomeSection) {
-        type = section.contents.type
         let bannerCountingModel = BannerPageCountingViewModel()
         state = State(bannerCounting: bannerCountingModel)
         

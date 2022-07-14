@@ -74,12 +74,10 @@ final class GridGoodsSectionViewModel: SectionViewModel, ViewModel {
                 let currentCount = self.state.itemCount.value ?? 0
                 let stackCount = currentCount + Constants.moreAddCount
                 let viewCount = min(stackCount, self.cellModels.count)
-                if viewCount == currentCount {
-                    self.state.footer?.state.isMax.accept(true)
-                } else {
-                    self.state.itemCount.accept(viewCount)
-                    self.state.insertItems.accept(currentCount..<viewCount)
-                }
+                
+                self.state.itemCount.accept(viewCount)
+                self.state.insertItems.accept(currentCount..<viewCount)
+                self.state.footer?.state.isMax.accept(viewCount >= self.cellModels.count)
             })
             .disposeBag(disposeBag)
         

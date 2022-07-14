@@ -9,6 +9,7 @@ import Foundation
 
 final class HomeSectionFooterViewModel: ViewModel {
     struct Action {
+        let loadData = PublishRelay<Void>()
         let tappedFooter = PublishRelay<Footer>()
         let tappedMore = PublishRelay<Void>()
         let tappedRefresh = PublishRelay<Void>()
@@ -17,7 +18,6 @@ final class HomeSectionFooterViewModel: ViewModel {
     struct State {
         let footer: Footer
         let isMax = PublishRelay<Bool>()
-        let itemCount = PublishRelay<Int>()
     }
     
     let action = Action()
@@ -25,10 +25,15 @@ final class HomeSectionFooterViewModel: ViewModel {
     let disposeBag = DisposeBag()
     
     init?(footer: Footer?) {
-        guard let footer = footer else {
-            return nil
-        }
+        guard let footer = footer else { return nil }
         state = State(footer: footer)
+        
+        action.loadData
+            .bind(onNext: { [weak self] _ in
+                let isMax = self?.state.isMax.value ?? false
+                self?.state.isMax.accept(isMax)
+            })
+            .disposeBag(disposeBag)
         
         action.tappedFooter
             .bind(onNext: { [weak self] footer in

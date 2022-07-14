@@ -18,7 +18,4 @@ final class BannerPageCountingViewModel: ViewModel {
     
     let action = Action()
     let state = State()
-    
-    init() {
-    }
 }

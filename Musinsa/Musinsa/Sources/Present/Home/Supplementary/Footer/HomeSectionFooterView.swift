@@ -23,6 +23,16 @@ final class HomeSectionFooterView: UICollectionReusableView, View {
         return button
     }()
     
+    private let finishLabel: UILabel = {
+        let label = UILabel()
+        label.text = "상품이 더 이상 없습니다!"
+        label.font = .systemFont(ofSize: 16, weight: .semibold)
+        label.textColor = .black
+        label.textAlignment = .center
+        label.isHidden = true
+        return label
+    }()
+    
     private var disposeBag = DisposeBag()
     
     override init(frame: CGRect) {
@@ -59,14 +69,22 @@ final class HomeSectionFooterView: UICollectionReusableView, View {
         }, for: .touchUpInside)
         
         viewModel.state.isMax
-            .bind(onNext: { isMax in
-                print(isMax)
+            .bind(onNext: { [weak self] isMax in
+                self?.button.isHidden = isMax
+                self?.finishLabel.isHidden = !isMax
             })
             .disposeBag(disposeBag)
+        
+        viewModel.action.loadData.accept(())
     }
     
     func layout() {
+        addSubview(finishLabel)
         addSubview(button)
+        
+        finishLabel.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
         
         button.snp.makeConstraints {
             $0.top.centerX.equalToSuperview()
