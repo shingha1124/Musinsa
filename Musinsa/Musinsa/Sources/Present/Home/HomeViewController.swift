@@ -10,7 +10,14 @@ import UIKit
 
 class HomeViewController: UIViewController, View {
     private lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: dataSource.layout)
+        let layoutConfig = UICollectionViewCompositionalLayoutConfiguration()
+        layoutConfig.interSectionSpacing = 15
+        
+        let layout = UICollectionViewCompositionalLayout(sectionProvider: dataSource.sectionProvider, configuration: layoutConfig)
+        
+        layout.register(WidthInsetBackgroundView.self, forDecorationViewOfKind: WidthInsetBackgroundView.identifier)
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
         collectionView.register(BannerViewCell.self, forCellWithReuseIdentifier: BannerViewCell.identifier)
         collectionView.register(GridGoodsViewCell.self, forCellWithReuseIdentifier: GridGoodsViewCell.identifier)
@@ -34,6 +41,7 @@ class HomeViewController: UIViewController, View {
         layout()
         
         collectionView.dataSource = dataSource
+        collectionView.delegate = dataSource
         
         viewModel?.action.viewDidLoad.accept(())
     }

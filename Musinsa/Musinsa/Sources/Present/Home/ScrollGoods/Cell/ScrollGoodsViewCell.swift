@@ -75,7 +75,7 @@ final class ScrollGoodsViewCell: BaseCollectionViewCell, View {
         priceLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(5)
             $0.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(5)
         }
         
         brandName.snp.makeConstraints {

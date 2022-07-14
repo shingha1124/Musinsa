@@ -43,10 +43,9 @@
 		E02EF728287F04EE002E656D /* HomeSectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02EF727287F04EE002E656D /* HomeSectionFooterView.swift */; };
 		E02EF72A287F07D6002E656D /* HomeSectionHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02EF729287F07D6002E656D /* HomeSectionHeaderViewModel.swift */; };
 		E02EF72C287F0837002E656D /* HomeSectionFooterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02EF72B287F0837002E656D /* HomeSectionFooterViewModel.swift */; };
-		E02EF72E287F0BED002E656D /* BaseSectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02EF72D287F0BED002E656D /* BaseSectionDataSource.swift */; };
 		E02EF730287F24E3002E656D /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02EF72F287F24E3002E656D /* UIImage+Extension.swift */; };
 		E02EF732287F2E83002E656D /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02EF731287F2E83002E656D /* UIColor+Extension.swift */; };
-		E02EF735287F3119002E656D /* SectionBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02EF734287F3119002E656D /* SectionBackgroundView.swift */; };
+		E02EF735287F3119002E656D /* WidthInsetBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02EF734287F3119002E656D /* WidthInsetBackgroundView.swift */; };
 		E0A2AE56287E4B2F00C93CB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A2AE55287E4B2F00C93CB1 /* AppDelegate.swift */; };
 		E0A2AE58287E4B2F00C93CB1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A2AE57287E4B2F00C93CB1 /* SceneDelegate.swift */; };
 		E0A2AE5A287E4B2F00C93CB1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A2AE59287E4B2F00C93CB1 /* HomeViewController.swift */; };
@@ -104,10 +103,9 @@
 		E02EF727287F04EE002E656D /* HomeSectionFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSectionFooterView.swift; sourceTree = "<group>"; };
 		E02EF729287F07D6002E656D /* HomeSectionHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSectionHeaderViewModel.swift; sourceTree = "<group>"; };
 		E02EF72B287F0837002E656D /* HomeSectionFooterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSectionFooterViewModel.swift; sourceTree = "<group>"; };
-		E02EF72D287F0BED002E656D /* BaseSectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSectionDataSource.swift; sourceTree = "<group>"; };
 		E02EF72F287F24E3002E656D /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		E02EF731287F2E83002E656D /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
-		E02EF734287F3119002E656D /* SectionBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionBackgroundView.swift; sourceTree = "<group>"; };
+		E02EF734287F3119002E656D /* WidthInsetBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidthInsetBackgroundView.swift; sourceTree = "<group>"; };
 		E0A2AE52287E4B2F00C93CB1 /* Musinsa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Musinsa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0A2AE55287E4B2F00C93CB1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0A2AE57287E4B2F00C93CB1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -184,7 +182,6 @@
 			isa = PBXGroup;
 			children = (
 				E02EF6D5287EA3AA002E656D /* BaseCollectionViewCell.swift */,
-				E02EF72D287F0BED002E656D /* BaseSectionDataSource.swift */,
 				E02EF6E7287EB52D002E656D /* SectionViewModel.swift */,
 				E02EF6ED287EBE3A002E656D /* SectionDataSource.swift */,
 			);
@@ -286,12 +283,12 @@
 			path = Footer;
 			sourceTree = "<group>";
 		};
-		E02EF733287F30F7002E656D /* SectionBackground */ = {
+		E02EF733287F30F7002E656D /* Background */ = {
 			isa = PBXGroup;
 			children = (
-				E02EF734287F3119002E656D /* SectionBackgroundView.swift */,
+				E02EF734287F3119002E656D /* WidthInsetBackgroundView.swift */,
 			);
-			path = SectionBackground;
+			path = Background;
 			sourceTree = "<group>";
 		};
 		E0A2AE49287E4B2F00C93CB1 = {
@@ -375,8 +372,8 @@
 		E0A2AE70287E4F0A00C93CB1 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				E02EF733287F30F7002E656D /* SectionBackground */,
 				E02EF6DF287EAAC7002E656D /* Base */,
+				E02EF733287F30F7002E656D /* Background */,
 				E02EF724287EFD07002E656D /* Footer */,
 				E02EF723287EFCF9002E656D /* Header */,
 				E02EF6DE287EAA86002E656D /* Banner */,
@@ -574,7 +571,6 @@
 				E02EF6D6287EA3AA002E656D /* BaseCollectionViewCell.swift in Sources */,
 				E02EF6E1287EABD4002E656D /* BannerSectionViewModel.swift in Sources */,
 				E02EF713287ECA7F002E656D /* GridGoodsSectionViewModel.swift in Sources */,
-				E02EF72E287F0BED002E656D /* BaseSectionDataSource.swift in Sources */,
 				E0A2AE81287E5D8A00C93CB1 /* URLSessionProtocol.swift in Sources */,
 				E02EF72A287F07D6002E656D /* HomeSectionHeaderViewModel.swift in Sources */,
 				E02EF715287ECA7F002E656D /* GridGoodsViewCellModel.swift in Sources */,
@@ -608,7 +604,7 @@
 				E02EF70F287ECA7F002E656D /* ScrollGoodsSectionViewModel.swift in Sources */,
 				E0A2AE8C287E639600C93CB1 /* HomeModel.swift in Sources */,
 				E02EF71B287EF1AD002E656D /* Int+Extension.swift in Sources */,
-				E02EF735287F3119002E656D /* SectionBackgroundView.swift in Sources */,
+				E02EF735287F3119002E656D /* WidthInsetBackgroundView.swift in Sources */,
 				E02EF718287ECC44002E656D /* ImageManager.swift in Sources */,
 				E02EF711287ECA7F002E656D /* ScrollGoodsViewCellModel.swift in Sources */,
 				E02EF730287F24E3002E656D /* UIImage+Extension.swift in Sources */,

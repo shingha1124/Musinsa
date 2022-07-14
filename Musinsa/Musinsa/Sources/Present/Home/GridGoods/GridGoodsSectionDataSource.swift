@@ -23,7 +23,7 @@ final class GridGoodsSectionDataSource: SectionDataSource {
     
     private lazy var group: NSCollectionLayoutGroup = {
         let width: NSCollectionLayoutDimension = .fractionalWidth(1)
-        let height: NSCollectionLayoutDimension = .estimated(200)
+        let height: NSCollectionLayoutDimension = .estimated(100)
         let size = NSCollectionLayoutSize(widthDimension: width, heightDimension: height)
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, subitems: [item])
         return group
@@ -31,7 +31,11 @@ final class GridGoodsSectionDataSource: SectionDataSource {
     
     lazy var section: NSCollectionLayoutSection = {
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = .init(top: 5, leading: 10, bottom: 5, trailing: 10)
+        section.interGroupSpacing = 5
+        section.contentInsets = .init(top: 5, leading: 10, bottom: 15, trailing: 10)
+        section.decorationItems = [
+            .background(elementKind: WidthInsetBackgroundView.identifier)
+        ]
         return section
     }()
     
@@ -48,11 +52,16 @@ final class GridGoodsSectionDataSource: SectionDataSource {
         viewModel?.footer
     }
     
+    var type: Contents.`Type` {
+        viewModel?.type ?? .banner
+    }
+    
     private let viewModel: GridGoodsSectionViewModel?
     
     init(sectionViewModel: SectionViewModel) {
         viewModel = sectionViewModel as? GridGoodsSectionViewModel
-        makeBoundarySupplementaryItem(sectionViewModel: sectionViewModel)
+        makeHeaderItem(header: sectionViewModel.header)
+        makeFooterItem(footer: sectionViewModel.footer)
     }
     
     func dequeueReusableCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

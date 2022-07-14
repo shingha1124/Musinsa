@@ -12,25 +12,26 @@ protocol SectionDataSource {
     var itemCount: Int { get }
     var header: HomeSectionHeaderViewModel? { get }
     var footer: HomeSectionFooterViewModel? { get }
+    var type: Contents.`Type` { get }
     
     func dequeueReusableCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
 }
 
 extension SectionDataSource {
-    func makeBoundarySupplementaryItem(sectionViewModel: SectionViewModel) {
-        if sectionViewModel.header != nil {
-            let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(70.0)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)
-            section.boundarySupplementaryItems.append(header)
+    
+    func makeHeaderItem(header: HomeSectionHeaderViewModel?) {
+        if header == nil {
+            return
         }
-        
-        if (sectionViewModel.type != .banner && sectionViewModel.type != .scroll),
-            sectionViewModel.footer != nil {
-            let footer = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(70.0)), elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottom)
-            section.boundarySupplementaryItems.append(footer)
+        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(45.0)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)
+        section.boundarySupplementaryItems.append(header)
+    }
+    
+    func makeFooterItem(footer: HomeSectionFooterViewModel?) {
+        if footer == nil {
+            return
         }
-        
-        section.decorationItems = [
-            .background(elementKind: SectionBackgroundView.identifier),
-        ]
+        let footer = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50.0)), elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottom)
+        section.boundarySupplementaryItems.append(footer)
     }
 }

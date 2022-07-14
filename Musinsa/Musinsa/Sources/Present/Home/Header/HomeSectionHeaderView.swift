@@ -59,7 +59,6 @@ final class HomeSectionHeaderView: UICollectionReusableView, View {
         title.text = header.title
         iconView.isHidden = header.iconURL == nil
         seeAll.isHidden = header.linkURL == nil
-        
         if let iconUrl = header.iconURL {
             Task {
                 icon.image = await ImageManager.shared.loadImage(url: iconUrl)
@@ -75,9 +74,9 @@ final class HomeSectionHeaderView: UICollectionReusableView, View {
         iconView.addSubview(icon)
         
         stackView.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview()
             $0.width.lessThanOrEqualTo(250)
-            $0.height.equalToSuperview()
         }
         
         iconView.snp.makeConstraints {
@@ -92,7 +91,7 @@ final class HomeSectionHeaderView: UICollectionReusableView, View {
         seeAll.snp.makeConstraints {
             $0.height.equalToSuperview()
             $0.width.equalTo(50)
-            $0.trailing.equalToSuperview().inset(10)
+            $0.trailing.equalToSuperview()
         }
     }
 }

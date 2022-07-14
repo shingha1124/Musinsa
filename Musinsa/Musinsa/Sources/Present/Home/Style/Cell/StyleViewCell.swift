@@ -12,6 +12,7 @@ final class StyleViewCell: BaseCollectionViewCell, View {
     private let thumbnailView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
         return imageView
     }()
         
@@ -26,7 +27,7 @@ final class StyleViewCell: BaseCollectionViewCell, View {
         contentView.addSubview(thumbnailView)
         
         thumbnailView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(2)
+            $0.edges.equalToSuperview()
         }
     }
 }

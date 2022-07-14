@@ -10,20 +10,6 @@ import UIKit
 final class HomeCollectionDataSource: NSObject {
     private var models = [SectionDataSource]()
     
-    var layout: UICollectionViewCompositionalLayout {
-        collectionLayout
-    }
-    
-    private lazy var collectionLayout: UICollectionViewCompositionalLayout = {
-        let layout = UICollectionViewCompositionalLayout(sectionProvider: self.layoutSection)
-        
-        layout.register(SectionBackgroundView.self, forDecorationViewOfKind: SectionBackgroundView.identifier)
-        return layout
-    }()
-}
-
-extension HomeCollectionDataSource {
-    
     func appendModel(_ model: SectionViewModel) {
         switch model.type {
         case .banner:
@@ -37,8 +23,19 @@ extension HomeCollectionDataSource {
         }
     }
     
-    private func layoutSection(_ section: Int, env: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? {
+    func sectionProvider(_ section: Int, env: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? {
         models[section].section
+    }
+}
+
+extension HomeCollectionDataSource: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
+        
+        if elementKind == WidthInsetBackgroundView.identifier {
+            let backgroundView = view as? WidthInsetBackgroundView
+            backgroundView?.sectionType(models[indexPath.section].type)
+        }
+//        models[indexPath.section].willDisplaySupplementaryView(collectionView, willDisplaySupplementaryView: view, forElementKind: elementKind, at: indexPath)
     }
 }
 
@@ -57,18 +54,22 @@ extension HomeCollectionDataSource: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionView.elementKindSectionHeader {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HomeSectionHeaderView.identifier, for: indexPath) as? HomeSectionHeaderView else {
                 return UICollectionReusableView()
             }
             header.viewModel = models[indexPath.section].header
             return header
-        } else {
+            
+        case UICollectionView.elementKindSectionFooter:
             guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HomeSectionFooterView.identifier, for: indexPath) as? HomeSectionFooterView else {
                 return UICollectionReusableView()
             }
             footer.viewModel = models[indexPath.section].footer
             return footer
+        default:
+            return UICollectionReusableView()
         }
     }
 }

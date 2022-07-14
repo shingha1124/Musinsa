@@ -51,7 +51,7 @@ final class HomeSectionFooterView: UICollectionReusableView, View {
         addSubview(button)
         
         button.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            $0.top.centerX.equalToSuperview()
             $0.height.equalTo(36)
         }
     }

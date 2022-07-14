@@ -7,12 +7,12 @@
 
 import UIKit
 
-class SectionBackgroundView: UICollectionReusableView {
+class WidthInsetBackgroundView: UICollectionReusableView {
     static var identifier: String { .init(describing: self) }
-
+    
     private var insetView: UIView = {
         let view = UIView()
-        view.backgroundColor = .black.withAlphaComponent(0.3)
+        view.backgroundColor = .white
         view.layer.cornerRadius = 15
         view.clipsToBounds = true
         return view
@@ -32,7 +32,24 @@ class SectionBackgroundView: UICollectionReusableView {
         addSubview(insetView)
         
         insetView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(5)
+            $0.top.bottom.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(5)
+        }
+    }
+    
+    func sectionType(_ type: Contents.`Type`) {
+        var widthInset = 0.0
+        switch type {
+        case .grid:
+            widthInset = 5
+        case .style:
+            widthInset = 5
+        default:
+            widthInset = 0
+        }
+        
+        insetView.snp.updateConstraints {
+            $0.leading.trailing.equalToSuperview().inset(widthInset)
         }
     }
 }

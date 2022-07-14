@@ -12,7 +12,7 @@ final class ScrollGoodsSectionDataSource: SectionDataSource {
     
     private let item: NSCollectionLayoutItem = {
         let fractionalWidth = 1.0
-        let fractionalHeight = 1.5
+        let fractionalHeight = 1.7
         let width: NSCollectionLayoutDimension = .fractionalWidth(fractionalWidth)
         let height: NSCollectionLayoutDimension = .fractionalWidth(fractionalHeight)
         let size = NSCollectionLayoutSize(widthDimension: width, heightDimension: height)
@@ -35,6 +35,9 @@ final class ScrollGoodsSectionDataSource: SectionDataSource {
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
         section.contentInsets = .init(top: 5, leading: 10, bottom: 10, trailing: 10)
+        section.decorationItems = [
+            .background(elementKind: WidthInsetBackgroundView.identifier)
+        ]
         return section
     }()
     
@@ -50,11 +53,15 @@ final class ScrollGoodsSectionDataSource: SectionDataSource {
         viewModel?.footer
     }
     
+    var type: Contents.`Type` {
+        viewModel?.type ?? .banner
+    }
+    
     private let viewModel: ScrollGoodsSectionViewModel?
     
     init(sectionViewModel: SectionViewModel) {
         viewModel = sectionViewModel as? ScrollGoodsSectionViewModel
-        makeBoundarySupplementaryItem(sectionViewModel: sectionViewModel)
+        makeHeaderItem(header: sectionViewModel.header)
     }
     
     func dequeueReusableCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
