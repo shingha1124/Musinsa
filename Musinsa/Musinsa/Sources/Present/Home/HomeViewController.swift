@@ -63,15 +63,17 @@ class HomeViewController: UIViewController, View {
             .bind(onNext: collectionView.reloadData)
             .disposeBag(disposeBag)
         
+        viewModel.state.reloadSection
+            .bind(onNext: collectionView.reloadSections(_:))
+            .disposeBag(disposeBag)
+        
+        viewModel.state.reloadItems
+            .bind(onNext: collectionView.insertItems(at:))
+            .disposeBag(disposeBag)
+        
         viewModel.state.openUrl
             .bind(onNext: {
                 UIApplication.shared.open($0)
-            })
-            .disposeBag(disposeBag)
-        
-        viewModel.state.reloadSection
-            .bind(onNext: { [weak self] section in
-                self?.collectionView.reloadSections(IndexSet(integer: section))
             })
             .disposeBag(disposeBag)
     }

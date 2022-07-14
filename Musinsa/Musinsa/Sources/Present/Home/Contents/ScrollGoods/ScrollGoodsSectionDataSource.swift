@@ -82,7 +82,7 @@ extension ScrollGoodsSectionDataSource {
     func displaySupplementaryView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
         if elementKind == WidthInsetBackgroundView.identifier {
             let backgroundView = view as? WidthInsetBackgroundView
-            backgroundView?.sectionType(.banner)
+            backgroundView?.widthInset(0)
         }
     }
 }

@@ -37,19 +37,9 @@ class WidthInsetBackgroundView: UICollectionReusableView {
         }
     }
     
-    func sectionType(_ type: Contents.`Type`) {
-        var widthInset = 0.0
-        switch type {
-        case .grid:
-            widthInset = 5
-        case .style:
-            widthInset = 5
-        default:
-            widthInset = 0
-        }
-        
+    func widthInset(_ value: Float) {        
         insetView.snp.updateConstraints {
-            $0.leading.trailing.equalToSuperview().inset(widthInset)
+            $0.leading.trailing.equalToSuperview().inset(value)
         }
     }
 }

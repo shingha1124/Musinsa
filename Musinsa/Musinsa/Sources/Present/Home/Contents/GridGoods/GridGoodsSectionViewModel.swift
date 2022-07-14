@@ -22,7 +22,7 @@ final class GridGoodsSectionViewModel: SectionViewModel, ViewModel {
     
     struct State {
         let itemCount = PublishRelay<Int>()
-        let reloadSection = PublishRelay<Void>()
+        let reloadItems = PublishRelay<Range<Int>>()
         let header: HomeSectionHeaderViewModel?
         let footer: HomeSectionFooterViewModel?
     }
@@ -82,11 +82,14 @@ final class GridGoodsSectionViewModel: SectionViewModel, ViewModel {
                 case .more:
                     let currentCount = self.state.itemCount.value ?? 0
                     let stackCount = currentCount + Constants.moreAddCount
-                    self.state.itemCount.accept(min(stackCount, self.cellModels.count))
+                    let viewCount = min(stackCount, self.cellModels.count)
+                    self.state.itemCount.accept(viewCount)
+                    self.state.reloadItems.accept(currentCount..<viewCount)
                 case .refresh:
                     self.cellModels.shuffle()
+                    let currentCount = self.state.itemCount.value ?? 0
+                    self.state.reloadItems.accept(0..<currentCount)
                 }
-                self.state.reloadSection.accept(())
             })
             .disposeBag(disposeBag)
     }
