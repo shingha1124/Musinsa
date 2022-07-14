@@ -9,6 +9,7 @@ import Foundation
 
 protocol Observer {
     func disposeBag(_ bag: DisposeBag)
+    func removeAll()
 }
 
 class PublishRelay<T>: Observer {
@@ -46,6 +47,10 @@ class PublishRelay<T>: Observer {
     func disposeBag(_ bag: DisposeBag) {
         bag.append(self)
     }
+    
+    func removeAll() {
+        binder.removeAll()
+    }
 }
 
 class DisposeBag {
@@ -56,6 +61,9 @@ class DisposeBag {
     }
     
     deinit {
-        bag = []
+        bag.forEach {
+            $0.removeAll()
+        }
+        bag.removeAll()
     }
 }

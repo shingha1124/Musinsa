@@ -67,7 +67,7 @@ class HomeViewController: UIViewController, View {
             .bind(onNext: collectionView.reloadSections(_:))
             .disposeBag(disposeBag)
         
-        viewModel.state.reloadItems
+        viewModel.state.insertItems
             .bind(onNext: collectionView.insertItems(at:))
             .disposeBag(disposeBag)
         

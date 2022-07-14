@@ -22,7 +22,8 @@ final class StyleSectionViewModel: SectionViewModel, ViewModel {
     
     struct State {
         let itemCount = PublishRelay<Int>()
-        let reloadItems = PublishRelay<Range<Int>>()
+        let insertItems = PublishRelay<Range<Int>>()
+        let reloadSection = PublishRelay<Void>()
         let header: HomeSectionHeaderViewModel?
         let footer: HomeSectionFooterViewModel?
     }
@@ -77,21 +78,25 @@ final class StyleSectionViewModel: SectionViewModel, ViewModel {
             })
             .disposeBag(disposeBag)
         
-        footer?.action.tappedFooter
-            .bind(onNext: { [weak self] footer in
+        footer?.action.tappedMore
+            .bind(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                switch footer.type {
-                case .more:
-                    let currentCount = self.state.itemCount.value ?? 0
-                    let stackCount = currentCount + Constants.moreAddCount
-                    let viewCount = min(stackCount, self.cellModels.count)
+                let currentCount = self.state.itemCount.value ?? 0
+                let stackCount = currentCount + Constants.moreAddCount
+                let viewCount = min(stackCount, self.cellModels.count)
+                if viewCount == currentCount {
+                    self.state.footer?.state.isMax.accept(true)
+                } else {
                     self.state.itemCount.accept(viewCount)
-                    self.state.reloadItems.accept(currentCount..<viewCount)
-                case .refresh:
-                    self.cellModels.shuffle()
-                    let currentCount = self.state.itemCount.value ?? 0
-                    self.state.reloadItems.accept(0..<currentCount)
+                    self.state.insertItems.accept(currentCount..<viewCount)
                 }
+            })
+            .disposeBag(disposeBag)
+        
+        footer?.action.tappedRefresh
+            .bind(onNext: {
+                self.cellModels.shuffle()
+                self.state.reloadSection.accept(())
             })
             .disposeBag(disposeBag)
     }

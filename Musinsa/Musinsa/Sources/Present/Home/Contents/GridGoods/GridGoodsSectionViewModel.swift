@@ -17,29 +17,28 @@ final class GridGoodsSectionViewModel: SectionViewModel, ViewModel {
         let loadData = PublishRelay<Void>()
         let tappedCell = PublishRelay<Content>()
         let tappedSeeAll = PublishRelay<Header>()
-        let tappedFooter = PublishRelay<Footer>()
     }
     
     struct State {
         let itemCount = PublishRelay<Int>()
-        let reloadItems = PublishRelay<Range<Int>>()
+        let insertItems = PublishRelay<Range<Int>>()
+        let reloadSection = PublishRelay<Void>()
         let header: HomeSectionHeaderViewModel?
         let footer: HomeSectionFooterViewModel?
     }
     
     let action = Action()
     let state: State
-    let type: Contents.`Type`
+    let type: Contents.`Type` = .grid
     
     subscript(index: Int) -> SectionCellViewModel {
         cellModels[index]
     }
     
     private var cellModels = [SectionCellViewModel]()
-    private let disposeBag = DisposeBag()
+    let disposeBag = DisposeBag()
     
     init(section: HomeSection) {
-        type = section.contents.type
         let header = HomeSectionHeaderViewModel(header: section.header)
         let footer = HomeSectionFooterViewModel(footer: section.footer)
         state = State(header: header, footer: footer)
@@ -50,8 +49,8 @@ final class GridGoodsSectionViewModel: SectionViewModel, ViewModel {
         action.loadData
             .bind(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                let startCount = min(Constants.moreAddCount, self.cellModels.count)
-                self.state.itemCount.accept(startCount)
+                let itemCount = min(Constants.moreAddCount, self.cellModels.count)
+                self.state.itemCount.accept(itemCount)
             })
             .disposeBag(disposeBag)
         
@@ -69,27 +68,25 @@ final class GridGoodsSectionViewModel: SectionViewModel, ViewModel {
             })
             .disposeBag(disposeBag)
         
-        footer?.action.tappedFooter
-            .bind(onNext: { [weak self] footer in
-                self?.action.tappedFooter.accept(footer)
+        footer?.action.tappedMore
+            .bind(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                let currentCount = self.state.itemCount.value ?? 0
+                let stackCount = currentCount + Constants.moreAddCount
+                let viewCount = min(stackCount, self.cellModels.count)
+                if viewCount == currentCount {
+                    self.state.footer?.state.isMax.accept(true)
+                } else {
+                    self.state.itemCount.accept(viewCount)
+                    self.state.insertItems.accept(currentCount..<viewCount)
+                }
             })
             .disposeBag(disposeBag)
         
-        footer?.action.tappedFooter
-            .bind(onNext: { [weak self] footer in
-                guard let self = self else { return }
-                switch footer.type {
-                case .more:
-                    let currentCount = self.state.itemCount.value ?? 0
-                    let stackCount = currentCount + Constants.moreAddCount
-                    let viewCount = min(stackCount, self.cellModels.count)
-                    self.state.itemCount.accept(viewCount)
-                    self.state.reloadItems.accept(currentCount..<viewCount)
-                case .refresh:
-                    self.cellModels.shuffle()
-                    let currentCount = self.state.itemCount.value ?? 0
-                    self.state.reloadItems.accept(0..<currentCount)
-                }
+        footer?.action.tappedRefresh
+            .bind(onNext: {
+                self.cellModels.shuffle()
+                self.state.reloadSection.accept(())
             })
             .disposeBag(disposeBag)
     }

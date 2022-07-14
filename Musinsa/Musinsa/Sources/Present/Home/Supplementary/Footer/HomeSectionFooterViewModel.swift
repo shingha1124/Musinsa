@@ -10,10 +10,14 @@ import Foundation
 final class HomeSectionFooterViewModel: ViewModel {
     struct Action {
         let tappedFooter = PublishRelay<Footer>()
+        let tappedMore = PublishRelay<Void>()
+        let tappedRefresh = PublishRelay<Void>()
     }
     
     struct State {
         let footer: Footer
+        let isMax = PublishRelay<Bool>()
+        let itemCount = PublishRelay<Int>()
     }
     
     let action = Action()
@@ -24,7 +28,17 @@ final class HomeSectionFooterViewModel: ViewModel {
         guard let footer = footer else {
             return nil
         }
-//        state = State(footer: Footer(type: .more, title: "테스트타이틀", iconURL: nil))
         state = State(footer: footer)
+        
+        action.tappedFooter
+            .bind(onNext: { [weak self] footer in
+                switch footer.type {
+                case .more:
+                    self?.action.tappedMore.accept(())
+                case .refresh:
+                    self?.action.tappedRefresh.accept(())
+                }
+            })
+            .disposeBag(disposeBag)
     }
 }

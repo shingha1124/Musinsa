@@ -16,7 +16,7 @@ final class HomeViewModel: ViewModel {
         let appendSection = PublishRelay<SectionViewModel>()
         let reloadData = PublishRelay<Void>()
         let reloadSection = PublishRelay<IndexSet>()
-        let reloadItems = PublishRelay<[IndexPath]>()
+        let insertItems = PublishRelay<[IndexPath]>()
         let openUrl = PublishRelay<URL>()
     }
     
@@ -80,13 +80,15 @@ final class HomeViewModel: ViewModel {
     private func styleSectionBind(_ model: StyleSectionViewModel, section: Int) {
         bindTappedCell(model.action.tappedCell)
         bindTappedSeeAll(model.action.tappedSeeAll)
-        bindReloadItems(model.state.reloadItems, section: section)
+        bindInsertItems(model.state.insertItems, section: section)
+        bindReloadSection(model.state.reloadSection, section: section)
     }
     
     private func gridSectionBind(_ model: GridGoodsSectionViewModel, section: Int) {
         bindTappedCell(model.action.tappedCell)
         bindTappedSeeAll(model.action.tappedSeeAll)
-        bindReloadItems(model.state.reloadItems, section: section)
+        bindInsertItems(model.state.insertItems, section: section)
+        bindReloadSection(model.state.reloadSection, section: section)
     }
     
     private func scrollSectionBind(_ model: ScrollGoodsSectionViewModel, section: Int) {
@@ -94,10 +96,10 @@ final class HomeViewModel: ViewModel {
         bindTappedSeeAll(model.action.tappedSeeAll)
     }
     
-    private func bindReloadItems(_ relay: PublishRelay<Range<Int>>, section: Int) {
+    private func bindInsertItems(_ relay: PublishRelay<Range<Int>>, section: Int) {
         relay.bind(onNext: { [weak self] range in
             let indexPaths = range.map { IndexPath(item: $0, section: section) }
-            self?.state.reloadItems.accept(indexPaths)
+            self?.state.insertItems.accept(indexPaths)
         })
         .disposeBag(disposeBag)
     }

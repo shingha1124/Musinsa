@@ -23,6 +23,8 @@ final class HomeSectionFooterView: UICollectionReusableView, View {
         return button
     }()
     
+    private var disposeBag = DisposeBag()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         layout()
@@ -36,6 +38,7 @@ final class HomeSectionFooterView: UICollectionReusableView, View {
     override func prepareForReuse() {
         super.prepareForReuse()
         button.removeTarget(nil, action: nil, for: .allEvents)
+        disposeBag = DisposeBag()
     }
     
     func bind(to viewModel: HomeSectionFooterViewModel) {
@@ -54,6 +57,12 @@ final class HomeSectionFooterView: UICollectionReusableView, View {
         button.addAction(UIAction { _ in
             viewModel.action.tappedFooter.accept(footer)
         }, for: .touchUpInside)
+        
+        viewModel.state.isMax
+            .bind(onNext: { isMax in
+                print(isMax)
+            })
+            .disposeBag(disposeBag)
     }
     
     func layout() {
