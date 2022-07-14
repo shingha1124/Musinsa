@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class ScrollGoodsSectionDataSource: SectionDataSource {
+final class ScrollGoodsSectionDataSource: SectionDataSource, View {
     
     private let item: NSCollectionLayoutItem = {
         let fractionalWidth = 1.0
@@ -42,34 +42,47 @@ final class ScrollGoodsSectionDataSource: SectionDataSource {
     }()
     
     var itemCount: Int {
-        viewModel.count
+        viewCount
     }
     
-    var header: HomeSectionHeaderViewModel? {
-        viewModel.header
+    private let disposeBag = DisposeBag()
+    private var viewCount = 0
+    
+    func bind(to viewModel: ScrollGoodsSectionViewModel) {
+        makeHeaderItem(header: viewModel.state.header)
+        
+        viewModel.state.itemCount
+            .bind(onNext: { [weak self] count in
+                self?.viewCount = count
+            })
+            .disposeBag(disposeBag)
+        
+        viewModel.action.loadData.accept(())
     }
-    
-    var footer: HomeSectionFooterViewModel? {
-        viewModel.footer
-    }
-    
-    var type: Contents.`Type` {
-        viewModel.type
-    }
-    
-    private let viewModel: SectionViewModel
-    
-    init(sectionViewModel: SectionViewModel) {
-        viewModel = sectionViewModel
-        makeHeaderItem(header: sectionViewModel.header)
-    }
-    
+}
+extension ScrollGoodsSectionDataSource {
     func dequeueReusableCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ScrollGoodsViewCell.identifier, for: indexPath) as? ScrollGoodsViewCell else {
             return UICollectionViewCell()
         }
         
-        cell.viewModel = viewModel[indexPath.item]
+        cell.viewModel = viewModel?[indexPath.item]
         return cell
+    }
+    
+    func supplementaryElement(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            return reusableHeader(collectionView, indexPath: indexPath, model: viewModel?.state.header)
+        default:
+            return UICollectionReusableView()
+        }
+    }
+    
+    func displaySupplementaryView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
+        if elementKind == WidthInsetBackgroundView.identifier {
+            let backgroundView = view as? WidthInsetBackgroundView
+            backgroundView?.sectionType(.banner)
+        }
     }
 }

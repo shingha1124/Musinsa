@@ -16,7 +16,11 @@ class PublishRelay<T>: Observer {
     
     private var binder: [BinderElement] = []
     private var dispatch: DispatchQueue?
-    private var value: T?
+    private var element: T?
+    
+    var value: T? {
+        element
+    }
 
     func bind(onNext: @escaping BinderElement) -> PublishRelay<T> {
         binder.append(onNext)
@@ -29,7 +33,7 @@ class PublishRelay<T>: Observer {
     }
     
     func accept(_ value: T) {
-        self.value = value
+        self.element = value
         if let dispatch = dispatch {
             dispatch.async {
                 self.binder.forEach { $0(value) }

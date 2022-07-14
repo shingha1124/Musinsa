@@ -27,6 +27,8 @@ class HomeViewController: UIViewController, View {
         collectionView.register(HomeSectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HomeSectionHeaderView.identifier)
         collectionView.register(HomeSectionFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: HomeSectionFooterView.identifier)
         
+        collectionView.register(BannerPageCountingView.self, forSupplementaryViewOfKind: BannerPageCountingView.elementKindSection, withReuseIdentifier: BannerPageCountingView.identifier)
+        
         collectionView.backgroundColor = .backGround2
         collectionView.showsVerticalScrollIndicator = false
         return collectionView

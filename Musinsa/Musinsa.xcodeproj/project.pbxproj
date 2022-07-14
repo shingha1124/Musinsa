@@ -38,6 +38,12 @@
 		E02EF730287F24E3002E656D /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02EF72F287F24E3002E656D /* UIImage+Extension.swift */; };
 		E02EF732287F2E83002E656D /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02EF731287F2E83002E656D /* UIColor+Extension.swift */; };
 		E02EF735287F3119002E656D /* WidthInsetBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02EF734287F3119002E656D /* WidthInsetBackgroundView.swift */; };
+		E03AFDC5288011AC008AF765 /* BannerPageCountingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03AFDC4288011AC008AF765 /* BannerPageCountingView.swift */; };
+		E03AFDC728801661008AF765 /* BannerSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03AFDC628801661008AF765 /* BannerSectionViewModel.swift */; };
+		E03AFDC9288017CD008AF765 /* StyleSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03AFDC8288017CD008AF765 /* StyleSectionViewModel.swift */; };
+		E03AFDCB28801821008AF765 /* GridGoodsSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03AFDCA28801821008AF765 /* GridGoodsSectionViewModel.swift */; };
+		E03AFDCD2880187A008AF765 /* ScrollGoodsSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03AFDCC2880187A008AF765 /* ScrollGoodsSectionViewModel.swift */; };
+		E03AFDD32880352E008AF765 /* BannerPageCountingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03AFDD22880352E008AF765 /* BannerPageCountingViewModel.swift */; };
 		E0A2AE56287E4B2F00C93CB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A2AE55287E4B2F00C93CB1 /* AppDelegate.swift */; };
 		E0A2AE58287E4B2F00C93CB1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A2AE57287E4B2F00C93CB1 /* SceneDelegate.swift */; };
 		E0A2AE5A287E4B2F00C93CB1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A2AE59287E4B2F00C93CB1 /* HomeViewController.swift */; };
@@ -91,6 +97,12 @@
 		E02EF72F287F24E3002E656D /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		E02EF731287F2E83002E656D /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		E02EF734287F3119002E656D /* WidthInsetBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidthInsetBackgroundView.swift; sourceTree = "<group>"; };
+		E03AFDC4288011AC008AF765 /* BannerPageCountingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerPageCountingView.swift; sourceTree = "<group>"; };
+		E03AFDC628801661008AF765 /* BannerSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerSectionViewModel.swift; sourceTree = "<group>"; };
+		E03AFDC8288017CD008AF765 /* StyleSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleSectionViewModel.swift; sourceTree = "<group>"; };
+		E03AFDCA28801821008AF765 /* GridGoodsSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridGoodsSectionViewModel.swift; sourceTree = "<group>"; };
+		E03AFDCC2880187A008AF765 /* ScrollGoodsSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollGoodsSectionViewModel.swift; sourceTree = "<group>"; };
+		E03AFDD22880352E008AF765 /* BannerPageCountingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerPageCountingViewModel.swift; sourceTree = "<group>"; };
 		E0A2AE52287E4B2F00C93CB1 /* Musinsa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Musinsa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0A2AE55287E4B2F00C93CB1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0A2AE57287E4B2F00C93CB1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -157,8 +169,9 @@
 		E02EF6DE287EAA86002E656D /* Banner */ = {
 			isa = PBXGroup;
 			children = (
-				E02EF6E4287EAFBC002E656D /* Cell */,
+				E02EF6D1287E9B22002E656D /* BannerViewCell.swift */,
 				E02EF6CB287E9110002E656D /* BannerSectionDataSource.swift */,
+				E03AFDC628801661008AF765 /* BannerSectionViewModel.swift */,
 			);
 			path = Banner;
 			sourceTree = "<group>";
@@ -171,63 +184,34 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
-		E02EF6E4287EAFBC002E656D /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				E02EF6D1287E9B22002E656D /* BannerViewCell.swift */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
 		E02EF6EF287EC472002E656D /* Style */ = {
 			isa = PBXGroup;
 			children = (
-				E02EF6F0287EC472002E656D /* Cell */,
+				E02EF6F1287EC472002E656D /* StyleViewCell.swift */,
 				E02EF6F4287EC472002E656D /* StyleSectionDataSource.swift */,
+				E03AFDC8288017CD008AF765 /* StyleSectionViewModel.swift */,
 			);
 			path = Style;
-			sourceTree = "<group>";
-		};
-		E02EF6F0287EC472002E656D /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				E02EF6F1287EC472002E656D /* StyleViewCell.swift */,
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 		E02EF703287ECA7F002E656D /* ScrollGoods */ = {
 			isa = PBXGroup;
 			children = (
-				E02EF705287ECA7F002E656D /* Cell */,
+				E02EF706287ECA7F002E656D /* ScrollGoodsViewCell.swift */,
 				E02EF708287ECA7F002E656D /* ScrollGoodsSectionDataSource.swift */,
+				E03AFDCC2880187A008AF765 /* ScrollGoodsSectionViewModel.swift */,
 			);
 			path = ScrollGoods;
-			sourceTree = "<group>";
-		};
-		E02EF705287ECA7F002E656D /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				E02EF706287ECA7F002E656D /* ScrollGoodsViewCell.swift */,
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 		E02EF709287ECA7F002E656D /* GridGoods */ = {
 			isa = PBXGroup;
 			children = (
-				E02EF70B287ECA7F002E656D /* Cell */,
+				E02EF70C287ECA7F002E656D /* GridGoodsViewCell.swift */,
 				E02EF70E287ECA7F002E656D /* GridGoodsSectionDataSource.swift */,
+				E03AFDCA28801821008AF765 /* GridGoodsSectionViewModel.swift */,
 			);
 			path = GridGoods;
-			sourceTree = "<group>";
-		};
-		E02EF70B287ECA7F002E656D /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				E02EF70C287ECA7F002E656D /* GridGoodsViewCell.swift */,
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 		E02EF719287EF1A2002E656D /* Extension */ = {
@@ -265,6 +249,26 @@
 				E02EF734287F3119002E656D /* WidthInsetBackgroundView.swift */,
 			);
 			path = Background;
+			sourceTree = "<group>";
+		};
+		E03AFDD0288034F4008AF765 /* Supplementary */ = {
+			isa = PBXGroup;
+			children = (
+				E03AFDD128803509008AF765 /* BannerPage */,
+				E02EF733287F30F7002E656D /* Background */,
+				E02EF724287EFD07002E656D /* Footer */,
+				E02EF723287EFCF9002E656D /* Header */,
+			);
+			path = Supplementary;
+			sourceTree = "<group>";
+		};
+		E03AFDD128803509008AF765 /* BannerPage */ = {
+			isa = PBXGroup;
+			children = (
+				E03AFDC4288011AC008AF765 /* BannerPageCountingView.swift */,
+				E03AFDD22880352E008AF765 /* BannerPageCountingViewModel.swift */,
+			);
+			path = BannerPage;
 			sourceTree = "<group>";
 		};
 		E0A2AE49287E4B2F00C93CB1 = {
@@ -349,10 +353,8 @@
 			isa = PBXGroup;
 			children = (
 				E02EF6DF287EAAC7002E656D /* Base */,
+				E03AFDD0288034F4008AF765 /* Supplementary */,
 				E0FCD313287FF98200D550C8 /* Contents */,
-				E02EF733287F30F7002E656D /* Background */,
-				E02EF724287EFD07002E656D /* Footer */,
-				E02EF723287EFCF9002E656D /* Header */,
 				E0A2AE59287E4B2F00C93CB1 /* HomeViewController.swift */,
 				E0A2AE6E287E4EEA00C93CB1 /* HomeViewModel.swift */,
 				E02EF6C9287E8C76002E656D /* HomeCollectionDataSource.swift */,
@@ -560,11 +562,13 @@
 				E0A2AE81287E5D8A00C93CB1 /* URLSessionProtocol.swift in Sources */,
 				E02EF72A287F07D6002E656D /* HomeSectionHeaderViewModel.swift in Sources */,
 				E0A2AE83287E5E0C00C93CB1 /* NetworkResult.swift in Sources */,
+				E03AFDD32880352E008AF765 /* BannerPageCountingViewModel.swift in Sources */,
 				E02EF714287ECA7F002E656D /* GridGoodsViewCell.swift in Sources */,
 				E02EF6BF287E7FBC002E656D /* Goods.swift in Sources */,
 				E02EF722287EF985002E656D /* NSAttributedString+Extension.swift in Sources */,
 				E0A2AE7B287E594400C93CB1 /* NetworkRepository.swift in Sources */,
 				E02EF712287ECA7F002E656D /* ScrollGoodsSectionDataSource.swift in Sources */,
+				E03AFDCB28801821008AF765 /* GridGoodsSectionViewModel.swift in Sources */,
 				E0A2AE5A287E4B2F00C93CB1 /* HomeViewController.swift in Sources */,
 				E02EF710287ECA7F002E656D /* ScrollGoodsViewCell.swift in Sources */,
 				E0A2AE77287E532700C93CB1 /* Observer.swift in Sources */,
@@ -579,11 +583,14 @@
 				E02EF6B8287E7F77002E656D /* HomeSection.swift in Sources */,
 				E02EF6F8287EC472002E656D /* StyleSectionDataSource.swift in Sources */,
 				E02EF6BD287E7FB4002E656D /* Banner.swift in Sources */,
+				E03AFDCD2880187A008AF765 /* ScrollGoodsSectionViewModel.swift in Sources */,
 				E02EF72C287F0837002E656D /* HomeSectionFooterViewModel.swift in Sources */,
 				E02EF6D2287E9B22002E656D /* BannerViewCell.swift in Sources */,
 				E0A2AE86287E5F8B00C93CB1 /* URLSessionProvider.swift in Sources */,
 				E02EF728287F04EE002E656D /* HomeSectionFooterView.swift in Sources */,
+				E03AFDC9288017CD008AF765 /* StyleSectionViewModel.swift in Sources */,
 				E0A2AE8C287E639600C93CB1 /* HomeModel.swift in Sources */,
+				E03AFDC728801661008AF765 /* BannerSectionViewModel.swift in Sources */,
 				E02EF71B287EF1AD002E656D /* Int+Extension.swift in Sources */,
 				E02EF735287F3119002E656D /* WidthInsetBackgroundView.swift in Sources */,
 				E02EF718287ECC44002E656D /* ImageManager.swift in Sources */,
@@ -592,6 +599,7 @@
 				E0A2AE7F287E5B8500C93CB1 /* BaseAPI.swift in Sources */,
 				E02EF716287ECA7F002E656D /* GridGoodsSectionDataSource.swift in Sources */,
 				E0A2AE58287E4B2F00C93CB1 /* SceneDelegate.swift in Sources */,
+				E03AFDC5288011AC008AF765 /* BannerPageCountingView.swift in Sources */,
 				E02EF726287EFD16002E656D /* HomeSectionHeaderView.swift in Sources */,
 				E02EF6EE287EBE3A002E656D /* SectionDataSource.swift in Sources */,
 				E02EF6E8287EB52D002E656D /* SectionViewModel.swift in Sources */,

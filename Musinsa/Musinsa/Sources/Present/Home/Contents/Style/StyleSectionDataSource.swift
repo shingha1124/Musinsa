@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class StyleSectionDataSource: SectionDataSource {
+final class StyleSectionDataSource: SectionDataSource, View {
     
     private let item: NSCollectionLayoutItem = {
         let fractionalWidth = 1.0 / 2.0
@@ -39,51 +39,47 @@ final class StyleSectionDataSource: SectionDataSource {
     }()
     
     var itemCount: Int {
-        currentViewCount
-//        let count = viewModel?.count ?? 0
-//        return count > 4 ? 4 : count
+        viewCount
     }
     
-    var header: HomeSectionHeaderViewModel? {
-        viewModel.header
-    }
-    
-    var footer: HomeSectionFooterViewModel? {
-        viewModel.footer
-    }
-    
-    var type: Contents.`Type` {
-        viewModel.type
-    }
-    
-    private let viewModel: SectionViewModel
     private let disposeBag = DisposeBag()
+    private var viewCount = 0
     
-    private let addViewCount = 4
-    private var currentViewCount = 4
-    
-    init(sectionViewModel: SectionViewModel) {
-        viewModel = sectionViewModel
-        makeHeaderItem(header: sectionViewModel.header)
-        makeFooterItem(footer: sectionViewModel.footer)
+    func bind(to viewModel: StyleSectionViewModel) {
+        makeHeaderItem(header: viewModel.state.header)
+        makeFooterItem(footer: viewModel.state.footer)
         
-        currentViewCount = min(viewModel.count, addViewCount)
-        
-        viewModel.addViewCount
-            .bind(onNext: { [weak self] _ in
-                guard let self = self else { return }
-                let stackCount = self.currentViewCount + self.addViewCount
-                self.currentViewCount = min(stackCount, self.viewModel.count)
+        viewModel.state.itemCount
+            .bind(onNext: { [weak self] count in
+                self?.viewCount = count
             })
             .disposeBag(disposeBag)
+        
+        viewModel.action.loadData.accept(())
     }
-    
+}
+
+extension StyleSectionDataSource {
     func dequeueReusableCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StyleViewCell.identifier, for: indexPath) as? StyleViewCell else {
             return UICollectionViewCell()
         }
         
-        cell.viewModel = viewModel[indexPath.item]
+        cell.viewModel = viewModel?[indexPath.item]
         return cell
+    }
+    
+    func supplementaryElement(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            return reusableHeader(collectionView, indexPath: indexPath, model: viewModel?.state.header)
+        case UICollectionView.elementKindSectionFooter:
+            return reusableFooter(collectionView, indexPath: indexPath, model: viewModel?.state.footer)
+        default:
+            return UICollectionReusableView()
+        }
+    }
+    
+    func displaySupplementaryView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
     }
 }

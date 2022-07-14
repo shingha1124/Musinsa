@@ -24,7 +24,7 @@ final class HomeSectionFooterViewModel: ViewModel {
         guard let footer = footer else {
             return nil
         }
-        state = State(footer: Footer(type: .more, title: "테스트타이틀", iconURL: nil))
-//        state = State(footer: footer)
+//        state = State(footer: Footer(type: .more, title: "테스트타이틀", iconURL: nil))
+        state = State(footer: footer)
     }
 }

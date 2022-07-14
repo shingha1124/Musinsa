@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class GridGoodsSectionDataSource: SectionDataSource {
+final class GridGoodsSectionDataSource: SectionDataSource, View {
     
     private let item: NSCollectionLayoutItem = {
         let fractionalWidth = 1.0 / 3.0
@@ -40,47 +40,47 @@ final class GridGoodsSectionDataSource: SectionDataSource {
     }()
     
     var itemCount: Int {
-        currentViewCount
+        viewCount
     }
     
-    var header: HomeSectionHeaderViewModel? {
-        viewModel.header
-    }
-    
-    var footer: HomeSectionFooterViewModel? {
-        viewModel.footer
-    }
-    
-    var type: Contents.`Type` {
-        viewModel.type
-    }
-    
-    private let viewModel: SectionViewModel
     private let disposeBag = DisposeBag()
+    private var viewCount = 0
     
-    private let addViewCount = 6
-    private var currentViewCount = 6
-    
-    init(sectionViewModel: SectionViewModel) {
-        viewModel = sectionViewModel
-        makeHeaderItem(header: sectionViewModel.header)
-        makeFooterItem(footer: sectionViewModel.footer)
+    func bind(to viewModel: GridGoodsSectionViewModel) {
+        makeHeaderItem(header: viewModel.state.header)
+        makeFooterItem(footer: viewModel.state.footer)
         
-        viewModel.addViewCount
-            .bind(onNext: { [weak self] _ in
-                guard let self = self else { return }
-                let stackCount = self.currentViewCount + self.addViewCount
-                self.currentViewCount = min(stackCount, self.viewModel.count)
+        viewModel.state.itemCount
+            .bind(onNext: { [weak self] count in
+                self?.viewCount = count
             })
             .disposeBag(disposeBag)
+        
+        viewModel.action.loadData.accept(())
     }
-    
+}
+
+extension GridGoodsSectionDataSource {
     func dequeueReusableCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GridGoodsViewCell.identifier, for: indexPath) as? GridGoodsViewCell else {
             return UICollectionViewCell()
         }
         
-        cell.viewModel = viewModel[indexPath.item]
+        cell.viewModel = viewModel?[indexPath.item]
         return cell
+    }
+    
+    func supplementaryElement(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            return reusableHeader(collectionView, indexPath: indexPath, model: viewModel?.state.header)
+        case UICollectionView.elementKindSectionFooter:
+            return reusableFooter(collectionView, indexPath: indexPath, model: viewModel?.state.footer)
+        default:
+            return UICollectionReusableView()
+        }
+    }
+    
+    func displaySupplementaryView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
     }
 }

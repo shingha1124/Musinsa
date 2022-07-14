@@ -42,43 +42,27 @@ final class HomeViewModel: ViewModel {
                 return
             }
             
-            let sectionViewModels = homeModel.data
-                .map { SectionViewModel(section: $0) }
-            
-            let tappedContent = sectionViewModels.flatMap {
-                $0.items.map { $0.action.tappedContent }
-            }
-            
-            tappedContent.forEach {
-                $0.bind(onNext: { [weak self] content in
-                    self?.state.openUrl.accept(content.linkURL)
-                })
-                .disposeBag(disposeBag)
-            }
-            
-            let tappedSeeAll = sectionViewModels.compactMap {
-                $0.header?.action.tappedSeeAll
-            }
-            
-            tappedSeeAll.forEach {
-                $0.bind(onNext: { [weak self] header in
-                    if let url = header.linkURL {
-                        self?.state.openUrl.accept(url)
+            let sectionViewModels = homeModel.data.enumerated()
+                .compactMap { index, section -> SectionViewModel? in
+                    switch section.contents.type {
+                    case .banner:
+                        let model = BannerSectionViewModel(section: section)
+                        self.bannerSectionBind(model, section: index)
+                        return model
+                    case .grid:
+                        let model = GridGoodsSectionViewModel(section: section)
+                        self.gridSectionBind(model, section: index)
+                        return model
+                    case .scroll:
+                        let model = ScrollGoodsSectionViewModel(section: section)
+                        self.scrollSectionBind(model, section: index)
+                        return model
+                    case .style:
+                        let model = StyleSectionViewModel(section: section)
+                        self.styleSectionBind(model, section: index)
+                        return model
                     }
-                })
-                .disposeBag(disposeBag)
-            }
-            
-            let reloadSection = sectionViewModels.enumerated().compactMap { index, model in
-                (index, model.reloadSection)
-            }
-            
-            reloadSection.forEach { index, event in
-                event.bind(onNext: { [weak self] _ in
-                    self?.state.reloadSection.accept(index)
-                })
-                .disposeBag(disposeBag)
-            }
+                }
             
             sectionViewModels.forEach {
                 state.appendSection.accept($0)
@@ -86,5 +70,48 @@ final class HomeViewModel: ViewModel {
             
             state.reloadData.accept(())
         }
+    }
+    
+    private func bannerSectionBind(_ model: BannerSectionViewModel, section: Int) {
+        bindTappedCell(model.action.tappedCell)
+    }
+    
+    private func styleSectionBind(_ model: StyleSectionViewModel, section: Int) {
+        bindTappedCell(model.action.tappedCell)
+        bindTappedSeeAll(model.action.tappedSeeAll)
+        bindReloadSection(model.state.reloadSection, section: section)
+    }
+    
+    private func gridSectionBind(_ model: GridGoodsSectionViewModel, section: Int) {
+        bindTappedCell(model.action.tappedCell)
+        bindTappedSeeAll(model.action.tappedSeeAll)
+        bindReloadSection(model.state.reloadSection, section: section)
+    }
+    
+    private func scrollSectionBind(_ model: ScrollGoodsSectionViewModel, section: Int) {
+        bindTappedCell(model.action.tappedCell)
+        bindTappedSeeAll(model.action.tappedSeeAll)
+    }
+    
+    private func bindReloadSection(_ relay: PublishRelay<Void>, section: Int) {
+        relay.bind(onNext: { [weak self] _ in
+            self?.state.reloadSection.accept(section)
+        })
+        .disposeBag(disposeBag)
+    }
+    
+    private func bindTappedCell(_ relay: PublishRelay<Content>) {
+        relay.bind(onNext: { [weak self] content in
+            self?.state.openUrl.accept(content.linkURL)
+        })
+        .disposeBag(disposeBag)
+    }
+    
+    private func bindTappedSeeAll(_ relay: PublishRelay<Header>) {
+        relay.bind(onNext: { [weak self] header in
+            guard let url = header.linkURL else { return }
+            self?.state.openUrl.accept(url)
+        })
+        .disposeBag(disposeBag)
     }
 }
