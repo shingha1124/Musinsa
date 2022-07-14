@@ -83,7 +83,8 @@ final class HomeSectionFooterView: UICollectionReusableView, View {
         addSubview(button)
         
         finishLabel.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
         }
         
         button.snp.makeConstraints {

@@ -88,12 +88,4 @@ final class GridGoodsSectionViewModel: SectionViewModel, ViewModel {
             })
             .disposeBag(disposeBag)
     }
-    
-    private func randomIndex() {
-        (0..<cellModels.count).forEach { index in
-            let randomIndex = Int.random(in: index..<cellModels.count)
-            let cell = cellModels.remove(at: randomIndex)
-            cellModels.insert(cell, at: 0)
-        }
-    }
 }
