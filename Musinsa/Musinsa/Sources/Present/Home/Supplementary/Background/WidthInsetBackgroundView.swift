@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WidthInsetBackgroundView: UICollectionReusableView {
+final class WidthInsetBackgroundView: UICollectionReusableView {
     static var identifier: String { .init(describing: self) }
     
     private var insetView: UIView = {

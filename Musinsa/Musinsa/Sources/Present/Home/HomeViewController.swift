@@ -8,7 +8,7 @@
 import SnapKit
 import UIKit
 
-class HomeViewController: UIViewController, View {
+final class HomeViewController: UIViewController, View {
     private lazy var collectionView: UICollectionView = {
         let layoutConfig = UICollectionViewCompositionalLayoutConfiguration()
         layoutConfig.interSectionSpacing = 15

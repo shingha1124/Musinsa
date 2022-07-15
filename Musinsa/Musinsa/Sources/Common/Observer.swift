@@ -12,7 +12,7 @@ protocol Observer {
     func removeAll()
 }
 
-class PublishRelay<T>: Observer {
+final class PublishRelay<T>: Observer {
     typealias BinderElement = (T) -> Void
     
     private var binder: [BinderElement] = []
@@ -53,7 +53,7 @@ class PublishRelay<T>: Observer {
     }
 }
 
-class DisposeBag {
+final class DisposeBag {
     private var bag = [Observer]()
     
     func append(_ observer: Observer) {
