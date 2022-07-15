@@ -76,12 +76,7 @@ final class HomeViewModel: ViewModel {
     
     private func bannerSectionBind(_ model: BannerSectionViewModel, section: Int) {
         bindTappedCell(model.action.tappedCell)
-        model.state.scrollToItem
-            .bind(onNext: { [weak self] item, animate in
-                let indexPath = IndexPath(item: item, section: section)
-                self?.state.scrollToItem.accept((indexPath, animate))
-            })
-            .disposeBag(disposeBag)
+        bindScrollToItem(model.state.scrollToItem, section: section)
     }
     
     private func styleSectionBind(_ model: StyleSectionViewModel, section: Int) {
@@ -89,6 +84,7 @@ final class HomeViewModel: ViewModel {
         bindTappedSeeAll(model.action.tappedSeeAll)
         bindInsertItems(model.state.insertItems, section: section)
         bindReloadSection(model.state.reloadSection, section: section)
+        bindScrollToItem(model.state.scrollToItem, section: section)
     }
     
     private func gridSectionBind(_ model: GridGoodsSectionViewModel, section: Int) {
@@ -96,11 +92,21 @@ final class HomeViewModel: ViewModel {
         bindTappedSeeAll(model.action.tappedSeeAll)
         bindInsertItems(model.state.insertItems, section: section)
         bindReloadSection(model.state.reloadSection, section: section)
+        bindScrollToItem(model.state.scrollToItem, section: section)
     }
     
     private func scrollSectionBind(_ model: ScrollGoodsSectionViewModel, section: Int) {
         bindTappedCell(model.action.tappedCell)
         bindTappedSeeAll(model.action.tappedSeeAll)
+    }
+    
+    private func bindScrollToItem(_ relay: PublishRelay<(Int, Bool)>, section: Int) {
+        relay
+            .bind(onNext: { [weak self] item, animate in
+                let indexPath = IndexPath(item: item, section: section)
+                self?.state.scrollToItem.accept((indexPath, animate))
+            })
+            .disposeBag(disposeBag)
     }
     
     private func bindInsertItems(_ relay: PublishRelay<Range<Int>>, section: Int) {
@@ -113,7 +119,6 @@ final class HomeViewModel: ViewModel {
     
     private func bindReloadSection(_ relay: PublishRelay<Void>, section: Int) {
         relay.bind(onNext: { [weak self] _ in
-            print("asdfasfasdfdsfffff")
             self?.state.reloadSection.accept(IndexSet(integer: section))
         })
         .disposeBag(disposeBag)

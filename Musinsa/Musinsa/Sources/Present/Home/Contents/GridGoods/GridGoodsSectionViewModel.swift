@@ -23,6 +23,7 @@ final class GridGoodsSectionViewModel: SectionViewModel, ViewModel {
         let itemCount = PublishRelay<Int>()
         let insertItems = PublishRelay<Range<Int>>()
         let reloadSection = PublishRelay<Void>()
+        let scrollToItem = PublishRelay<(Int, Bool)>()
         let header: HomeSectionHeaderViewModel?
         let footer: HomeSectionFooterViewModel?
     }
@@ -77,6 +78,7 @@ final class GridGoodsSectionViewModel: SectionViewModel, ViewModel {
                 
                 self.state.itemCount.accept(viewCount)
                 self.state.insertItems.accept(currentCount..<viewCount)
+                self.state.scrollToItem.accept((viewCount - 1, false))
                 self.state.footer?.state.isMax.accept(viewCount >= self.cellModels.count)
             })
             .disposeBag(disposeBag)
