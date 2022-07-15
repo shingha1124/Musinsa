@@ -79,9 +79,8 @@ class HomeViewController: UIViewController, View {
         
         viewModel.state.scrollToItem
             .mainQueue()
-            .bind(onNext: {
-                self.collectionView.scrollToItem(at: $0, at: .left, animated: false)
-//                self.collectionView.reloadItems(at: [$0])
+            .bind(onNext: { indexPath, animate in
+                self.collectionView.scrollToItem(at: indexPath, at: .left, animated: animate)
             })
             .disposeBag(disposeBag)
     }

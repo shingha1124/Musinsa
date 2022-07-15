@@ -19,7 +19,7 @@ final class BannerSectionViewModel: SectionViewModel, ViewModel {
     
     struct State {
         let itemCount = PublishRelay<Int>()
-        let scrollToItem = PublishRelay<Int>()
+        let scrollToItem = PublishRelay<(Int, Bool)>()
         let bannerCounting: BannerPageCountingViewModel
     }
     
@@ -31,8 +31,8 @@ final class BannerSectionViewModel: SectionViewModel, ViewModel {
         cellModels[index]
     }
     
-    private var cellModels = [SectionCellViewModel]()
     private let disposeBag = DisposeBag()
+    private var cellModels: [SectionCellViewModel]
     private let cellMaxIndex: Int
     private var realPage: Int = 19 {
         didSet {
@@ -41,11 +41,14 @@ final class BannerSectionViewModel: SectionViewModel, ViewModel {
             }
         }
     }
+    private var autoScrollTimer: Timer?
+    private var autoScrollIndex: Int = 0
     
     init(section: HomeSection) {
         let bannerCountingModel = BannerPageCountingViewModel()
         state = State(bannerCounting: bannerCountingModel)
         cellMaxIndex = section.contents.items.count
+        
         cellModels = section.contents.items
             .map { SectionCellViewModel(content: $0) }
         cellModels.insert(cellModels[cellModels.count - 1], at: 0)
@@ -61,7 +64,7 @@ final class BannerSectionViewModel: SectionViewModel, ViewModel {
         action.reloadSection
             .bind(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                self.state.scrollToItem.accept(1)
+                self.state.scrollToItem.accept((1, false))
             })
             .disposeBag(disposeBag)
         
@@ -85,14 +88,29 @@ final class BannerSectionViewModel: SectionViewModel, ViewModel {
                     newPage = 1
                 }
                 
+                self.autoScrollIndex = newPage
                 let realPage = newPage - 1
                 
                 if self.realPage != realPage {
                     self.realPage = realPage
-                    self.state.scrollToItem.accept(newPage)
+                    self.state.scrollToItem.accept((newPage, false))
                     self.state.bannerCounting.state.page.accept((realPage + 1, self.cellMaxIndex))
                 }
+                self.startTimer()
             })
             .disposeBag(disposeBag)
+    }
+    
+    private func resetTimer() {
+        autoScrollTimer?.invalidate()
+        autoScrollTimer = nil
+    }
+    
+    private func startTimer() {
+        resetTimer()
+        autoScrollTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
+            self.autoScrollIndex += 1
+            self.state.scrollToItem.accept((self.autoScrollIndex, true))
+        }
     }
 }
