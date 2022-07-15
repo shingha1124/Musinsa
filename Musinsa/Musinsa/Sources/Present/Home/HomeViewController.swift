@@ -59,7 +59,7 @@ class HomeViewController: UIViewController, View {
             .disposeBag(disposeBag)
 
         viewModel.state.reloadData
-            .mainThread()
+            .mainQueue()
             .bind(onNext: collectionView.reloadData)
             .disposeBag(disposeBag)
         
@@ -74,6 +74,14 @@ class HomeViewController: UIViewController, View {
         viewModel.state.openUrl
             .bind(onNext: {
                 UIApplication.shared.open($0)
+            })
+            .disposeBag(disposeBag)
+        
+        viewModel.state.scrollToItem
+            .mainQueue()
+            .bind(onNext: {
+                self.collectionView.scrollToItem(at: $0, at: .left, animated: false)
+//                self.collectionView.reloadItems(at: [$0])
             })
             .disposeBag(disposeBag)
     }

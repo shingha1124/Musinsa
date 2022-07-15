@@ -28,7 +28,7 @@ class PublishRelay<T>: Observer {
         return self
     }
 
-    func mainThread() -> PublishRelay<T> {
+    func mainQueue() -> PublishRelay<T> {
         dispatch = DispatchQueue.main
         return self
     }

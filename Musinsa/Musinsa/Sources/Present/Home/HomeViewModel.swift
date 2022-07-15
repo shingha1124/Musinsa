@@ -16,6 +16,7 @@ final class HomeViewModel: ViewModel {
         let appendSection = PublishRelay<SectionViewModel>()
         let reloadData = PublishRelay<Void>()
         let reloadSection = PublishRelay<IndexSet>()
+        let scrollToItem = PublishRelay<IndexPath>()
         let insertItems = PublishRelay<[IndexPath]>()
         let openUrl = PublishRelay<URL>()
     }
@@ -75,6 +76,11 @@ final class HomeViewModel: ViewModel {
     
     private func bannerSectionBind(_ model: BannerSectionViewModel, section: Int) {
         bindTappedCell(model.action.tappedCell)
+        model.state.scrollToItem
+            .bind(onNext: {
+                self.state.scrollToItem.accept(IndexPath(item: $0, section: section))
+            })
+            .disposeBag(disposeBag)
     }
     
     private func styleSectionBind(_ model: StyleSectionViewModel, section: Int) {
@@ -106,6 +112,7 @@ final class HomeViewModel: ViewModel {
     
     private func bindReloadSection(_ relay: PublishRelay<Void>, section: Int) {
         relay.bind(onNext: { [weak self] _ in
+            print("asdfasfasdfdsfffff")
             self?.state.reloadSection.accept(IndexSet(integer: section))
         })
         .disposeBag(disposeBag)

@@ -33,8 +33,9 @@ final class BannerSectionDataSource: SectionDataSource, View {
         section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
 
         section.visibleItemsInvalidationHandler = { cells, scrollOffset, _ in
-            let page = Int(round(scrollOffset.x / cells[0].frame.width)) + 1
-            self.viewModel?.action.changePage.accept(page)
+            if var page = Int(exactly: (scrollOffset.x) / cells[0].frame.width) {
+                self.viewModel?.action.changePage.accept(page)
+            }
         }
         
         let anchor = NSCollectionLayoutAnchor(edges: [.bottom, .trailing],
@@ -45,13 +46,17 @@ final class BannerSectionDataSource: SectionDataSource, View {
         
         return section
     }()
-    
+        
     var itemCount: Int {
         viewCount
     }
     
     private let disposeBag = DisposeBag()
     private var viewCount = 0
+    
+    func reloadSection() {
+        viewModel?.action.reloadSection.accept(())
+    }
     
     func bind(to viewModel: BannerSectionViewModel) {
         viewModel.state.itemCount

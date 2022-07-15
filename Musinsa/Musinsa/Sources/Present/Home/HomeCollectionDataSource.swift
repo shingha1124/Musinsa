@@ -32,7 +32,8 @@ final class HomeCollectionDataSource: NSObject {
     }
     
     func sectionProvider(_ section: Int, env: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? {
-        models[section].section
+        models[section].reloadSection()
+        return models[section].section
     }
 }
 
