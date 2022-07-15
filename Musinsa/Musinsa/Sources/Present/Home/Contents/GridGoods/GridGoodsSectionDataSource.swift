@@ -46,7 +46,6 @@ final class GridGoodsSectionDataSource: SectionDataSource, View {
     private var viewCount = 0
     
     func reloadSection() {
-        
     }
     
     func bind(to viewModel: GridGoodsSectionViewModel) {

@@ -48,7 +48,6 @@ final class ScrollGoodsSectionDataSource: SectionDataSource, View {
     private var viewCount = 0
     
     func reloadSection() {
-        
     }
     
     func bind(to viewModel: ScrollGoodsSectionViewModel) {
@@ -63,6 +62,7 @@ final class ScrollGoodsSectionDataSource: SectionDataSource, View {
         viewModel.action.loadData.accept(())
     }
 }
+
 extension ScrollGoodsSectionDataSource {
     func dequeueReusableCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ScrollGoodsViewCell.identifier, for: indexPath) as? ScrollGoodsViewCell else {

@@ -23,7 +23,7 @@ final class HomeViewModel: ViewModel {
     
     let action = Action()
     let state = State()
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     private let musinsaRepository: MusinsaRepository = MusinsaRepositoryImpl()
         

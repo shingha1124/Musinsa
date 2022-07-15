@@ -22,7 +22,7 @@ final class HomeSectionFooterViewModel: ViewModel {
     
     let action = Action()
     let state: State
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     init?(footer: Footer?) {
         guard let footer = footer else { return nil }

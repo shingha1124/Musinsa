@@ -36,7 +36,7 @@ final class GridGoodsSectionViewModel: SectionViewModel, ViewModel {
     }
     
     private var cellModels = [SectionCellViewModel]()
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     init(section: HomeSection) {
         let header = HomeSectionHeaderViewModel(header: section.header)

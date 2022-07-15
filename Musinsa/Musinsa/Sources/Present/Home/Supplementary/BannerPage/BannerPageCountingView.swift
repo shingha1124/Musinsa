@@ -44,7 +44,7 @@ class BannerPageCountingView: UICollectionReusableView, View {
             .disposeBag(disposeBag)
     }
     
-    func layout() {
+    private func layout() {
         addSubview(countingLabel)
         
         countingLabel.snp.makeConstraints {

@@ -78,7 +78,7 @@ final class HomeSectionFooterView: UICollectionReusableView, View {
         viewModel.action.loadData.accept(())
     }
     
-    func layout() {
+    private func layout() {
         addSubview(finishLabel)
         addSubview(button)
         

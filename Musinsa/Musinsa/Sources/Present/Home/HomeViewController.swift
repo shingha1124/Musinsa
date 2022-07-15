@@ -85,11 +85,11 @@ class HomeViewController: UIViewController, View {
             .disposeBag(disposeBag)
     }
     
-    func attribute() {
+    private func attribute() {
         view.backgroundColor = .backGround2
     }
     
-    func layout() {
+    private func layout() {
         view.addSubview(collectionView)
         
         collectionView.snp.makeConstraints {
