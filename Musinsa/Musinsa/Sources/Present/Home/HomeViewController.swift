@@ -80,7 +80,7 @@ final class HomeViewController: UIViewController, View {
         viewModel.state.scrollToItem
             .mainQueue()
             .bind(onNext: { indexPath, animate in
-                self.collectionView.scrollToItem(at: indexPath, at: .left, animated: animate)
+                self.collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: animate)
             })
             .disposeBag(disposeBag)
     }

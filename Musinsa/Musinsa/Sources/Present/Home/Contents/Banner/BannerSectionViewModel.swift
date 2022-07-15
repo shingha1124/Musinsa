@@ -96,7 +96,7 @@ final class BannerSectionViewModel: SectionViewModel, ViewModel {
                     self.state.scrollToItem.accept((newPage, false))
                     self.state.bannerCounting.state.page.accept((realPage + 1, self.cellMaxIndex))
                 }
-                self.startTimer()
+//                self.startTimer()
             })
             .disposeBag(disposeBag)
     }
@@ -108,7 +108,7 @@ final class BannerSectionViewModel: SectionViewModel, ViewModel {
     
     private func startTimer() {
         resetTimer()
-        autoScrollTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
+        autoScrollTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
             self.autoScrollIndex += 1
             self.state.scrollToItem.accept((self.autoScrollIndex, true))
         }
