@@ -26,7 +26,7 @@ final class HomeSectionFooterViewModel: ViewModel {
     
     init?(footer: Footer?) {
         guard let footer = footer else { return nil }
-        state = State(footer: footer)
+        state = State(footer: Footer(type: .refresh, title: "새로운 추천", iconURL: nil))
         
         action.loadData
             .bind(onNext: { [weak self] _ in

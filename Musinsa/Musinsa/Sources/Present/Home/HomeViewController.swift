@@ -54,8 +54,13 @@ final class HomeViewController: UIViewController, View {
     }
 
     func bind(to viewModel: HomeViewModel) {
-        viewModel.state.appendSection
-            .bind(onNext: dataSource.appendModel(_:))
+        viewModel.state.appendSections
+            .mainQueue()
+            .bind(onNext: { [weak self] models in
+                self?.dataSource.appendModel(models)
+                self?.collectionView.reloadData()
+                self?.collectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: .top, animated: false)
+            })
             .disposeBag(disposeBag)
 
         viewModel.state.reloadData
@@ -63,8 +68,8 @@ final class HomeViewController: UIViewController, View {
             .bind(onNext: collectionView.reloadData)
             .disposeBag(disposeBag)
         
-        viewModel.state.reloadSection
-            .bind(onNext: collectionView.reloadSections(_:))
+        viewModel.state.reloadItems
+            .bind(onNext: collectionView.reloadItems(at:))
             .disposeBag(disposeBag)
         
         viewModel.state.insertItems

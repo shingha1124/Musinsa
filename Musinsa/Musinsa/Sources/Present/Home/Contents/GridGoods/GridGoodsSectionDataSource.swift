@@ -45,9 +45,6 @@ final class GridGoodsSectionDataSource: SectionDataSource, View {
     private let disposeBag = DisposeBag()
     private var viewCount = 0
     
-    func reloadSection() {
-    }
-    
     func bind(to viewModel: GridGoodsSectionViewModel) {
         makeHeaderItem(header: viewModel.state.header)
         makeFooterItem(footer: viewModel.state.footer)

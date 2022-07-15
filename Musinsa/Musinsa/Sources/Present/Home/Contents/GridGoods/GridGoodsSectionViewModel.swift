@@ -23,7 +23,7 @@ final class GridGoodsSectionViewModel: SectionViewModel, ViewModel {
     struct State {
         let itemCount = PublishRelay<Int>()
         let insertItems = PublishRelay<Range<Int>>()
-        let reloadSection = PublishRelay<Void>()
+        let reloadItems = PublishRelay<[Int]>()
         let scrollToItem = PublishRelay<(Int, Bool)>()
         let header: HomeSectionHeaderViewModel?
         let footer: HomeSectionFooterViewModel?
@@ -85,9 +85,13 @@ final class GridGoodsSectionViewModel: SectionViewModel, ViewModel {
             .disposeBag(disposeBag)
         
         footer?.action.tappedRefresh
-            .bind(onNext: {
-                self.cellModels.shuffle()
-                self.state.reloadSection.accept(())
+            .bind(onNext: { [weak self] _ in
+                guard let itemCount = self?.state.itemCount.value else {
+                    return
+                }
+                self?.cellModels.shuffle()
+                let items = Array(0..<itemCount)
+                self?.state.reloadItems.accept(items)
             })
             .disposeBag(disposeBag)
     }

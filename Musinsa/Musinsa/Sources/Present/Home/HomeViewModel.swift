@@ -13,9 +13,9 @@ final class HomeViewModel: ViewModel {
     }
     
     struct State {
-        let appendSection = PublishRelay<SectionViewModel>()
+        let appendSections = PublishRelay<[SectionViewModel]>()
         let reloadData = PublishRelay<Void>()
-        let reloadSection = PublishRelay<IndexSet>()
+        let reloadItems = PublishRelay<[IndexPath]>()
         let scrollToItem = PublishRelay<(IndexPath, Bool)>()
         let insertItems = PublishRelay<[IndexPath]>()
         let openUrl = PublishRelay<URL>()
@@ -65,12 +65,7 @@ final class HomeViewModel: ViewModel {
                         return model
                     }
                 }
-            
-            sectionViewModels.forEach {
-                state.appendSection.accept($0)
-            }
-            
-            state.reloadData.accept(())
+            state.appendSections.accept(sectionViewModels)
         }
     }
     
@@ -83,7 +78,7 @@ final class HomeViewModel: ViewModel {
         bindTappedCell(model.action.tappedCell)
         bindTappedSeeAll(model.action.tappedSeeAll)
         bindInsertItems(model.state.insertItems, section: section)
-        bindReloadSection(model.state.reloadSection, section: section)
+        bindReloadItems(model.state.reloadItems, section: section)
         bindScrollToItem(model.state.scrollToItem, section: section)
     }
     
@@ -91,7 +86,7 @@ final class HomeViewModel: ViewModel {
         bindTappedCell(model.action.tappedCell)
         bindTappedSeeAll(model.action.tappedSeeAll)
         bindInsertItems(model.state.insertItems, section: section)
-        bindReloadSection(model.state.reloadSection, section: section)
+        bindReloadItems(model.state.reloadItems, section: section)
         bindScrollToItem(model.state.scrollToItem, section: section)
     }
     
@@ -117,9 +112,10 @@ final class HomeViewModel: ViewModel {
         .disposeBag(disposeBag)
     }
     
-    private func bindReloadSection(_ relay: PublishRelay<Void>, section: Int) {
-        relay.bind(onNext: { [weak self] _ in
-            self?.state.reloadSection.accept(IndexSet(integer: section))
+    private func bindReloadItems(_ relay: PublishRelay<[Int]>, section: Int) {
+        relay.bind(onNext: { [weak self] items in
+            let indexPaths = items.map { IndexPath(item: $0, section: section) }
+            self?.state.reloadItems.accept(indexPaths)
         })
         .disposeBag(disposeBag)
     }

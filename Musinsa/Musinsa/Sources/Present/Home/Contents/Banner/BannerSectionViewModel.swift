@@ -10,7 +10,6 @@ import Foundation
 final class BannerSectionViewModel: SectionViewModel, ViewModel {
     
     struct Action {
-        let reloadSection = PublishRelay<Void>()
         let loadData = PublishRelay<Void>()
         let tappedCell = PublishRelay<Content>()
         let changePage = PublishRelay<Int>()
@@ -58,13 +57,6 @@ final class BannerSectionViewModel: SectionViewModel, ViewModel {
             .bind(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.state.itemCount.accept(self.cellModels.count)
-            })
-            .disposeBag(disposeBag)
-        
-        action.reloadSection
-            .bind(onNext: { [weak self] _ in
-                guard let self = self else { return }
-                self.state.scrollToItem.accept((1, false))
             })
             .disposeBag(disposeBag)
         

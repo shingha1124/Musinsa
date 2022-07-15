@@ -11,8 +11,6 @@ protocol SectionDataSource {
     var section: NSCollectionLayoutSection { get }
     var itemCount: Int { get }
     
-    func reloadSection()
-    
     func dequeueReusableCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     
     func supplementaryElement(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView

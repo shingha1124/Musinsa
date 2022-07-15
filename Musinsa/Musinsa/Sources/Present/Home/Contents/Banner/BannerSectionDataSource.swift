@@ -54,10 +54,6 @@ final class BannerSectionDataSource: SectionDataSource, View {
     private let disposeBag = DisposeBag()
     private var viewCount = 0
     
-    func reloadSection() {
-        viewModel?.action.reloadSection.accept(())
-    }
-    
     func bind(to viewModel: BannerSectionViewModel) {
         viewModel.state.itemCount
             .bind(onNext: { [weak self] count in
