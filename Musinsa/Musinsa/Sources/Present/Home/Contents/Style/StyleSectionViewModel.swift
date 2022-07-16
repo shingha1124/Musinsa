@@ -10,8 +10,8 @@ import Foundation
 final class StyleSectionViewModel: SectionViewModel, ViewModel {
     
     enum Constants {
-        static let startItemCount = 4
-        static let moreAddCount = 2
+        static let startRowCount = 4
+        static let columnCount = 2
     }
     
     struct Action {
@@ -52,7 +52,7 @@ final class StyleSectionViewModel: SectionViewModel, ViewModel {
         action.loadData
             .bind(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                let startCount = min(Constants.startItemCount, self.cellModels.count)
+                let startCount = min(Constants.startRowCount, self.cellModels.count)
                 self.state.itemCount.accept(startCount)
             })
             .disposeBag(disposeBag)
@@ -75,7 +75,7 @@ final class StyleSectionViewModel: SectionViewModel, ViewModel {
             .bind(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 let currentCount = self.state.itemCount.value ?? 0
-                let stackCount = currentCount + Constants.moreAddCount
+                let stackCount = currentCount + Constants.columnCount
                 let viewCount = min(stackCount, self.cellModels.count)
                 
                 self.state.itemCount.accept(viewCount)

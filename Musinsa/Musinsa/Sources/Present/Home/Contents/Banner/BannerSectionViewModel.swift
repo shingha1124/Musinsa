@@ -9,11 +9,16 @@ import Foundation
 
 final class BannerSectionViewModel: SectionViewModel, ViewModel {
     
+    enum Constants {
+        static let startIndex = 1
+    }
+    
     struct Action {
         let loadData = PublishRelay<Void>()
         let tappedCell = PublishRelay<Content>()
         let changePage = PublishRelay<Int>()
         let isScrolling = PublishRelay<(Bool, Int)>()
+        let setFirstBanner = PublishRelay<Void>()
     }
     
     struct State {
@@ -33,7 +38,7 @@ final class BannerSectionViewModel: SectionViewModel, ViewModel {
     private let disposeBag = DisposeBag()
     private var cellModels: [SectionCellViewModel]
     private let cellMaxIndex: Int
-    private var realPage: Int = 19 {
+    private var realPage: Int = -1 {
         didSet {
             if realPage >= cellMaxIndex {
                 realPage = 0
@@ -60,6 +65,14 @@ final class BannerSectionViewModel: SectionViewModel, ViewModel {
             })
             .disposeBag(disposeBag)
         
+        action.setFirstBanner
+            .bind(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.realPage = Constants.startIndex
+                self.state.scrollToItem.accept((Constants.startIndex, false))
+            })
+            .disposeBag(disposeBag)
+        
         cellModels.forEach {
             $0.action.tappedContent
                 .bind(onNext: { [weak self] content in
@@ -70,7 +83,9 @@ final class BannerSectionViewModel: SectionViewModel, ViewModel {
         
         action.changePage
             .bind(onNext: { [weak self] page in
-                guard let self = self else { return }
+                guard let self = self,
+                      self.realPage != -1 else { return }
+                
                 var newPage = page
                 let maxCount = self.cellModels.count - 1
                 

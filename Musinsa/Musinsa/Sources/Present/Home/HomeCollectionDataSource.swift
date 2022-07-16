@@ -33,6 +33,12 @@ final class HomeCollectionDataSource: NSObject {
         }
     }
     
+    func didLoad() {
+        sectionDataSources.forEach {
+            $0.didLoad()
+        }
+    }
+    
     func sectionProvider(_ section: Int, env: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? {
         sectionDataSources[section].section
     }

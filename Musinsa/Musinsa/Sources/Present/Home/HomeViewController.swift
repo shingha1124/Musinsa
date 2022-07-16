@@ -59,7 +59,7 @@ final class HomeViewController: UIViewController, View {
             .bind(onNext: { [weak self] models in
                 self?.dataSource.appendModel(models)
                 self?.collectionView.reloadData()
-                self?.collectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: .top, animated: false)
+                self?.dataSource.didLoad()
             })
             .disposeBag(disposeBag)
 

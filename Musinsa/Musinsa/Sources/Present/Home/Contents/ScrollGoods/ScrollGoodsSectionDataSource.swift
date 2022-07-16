@@ -47,6 +47,9 @@ final class ScrollGoodsSectionDataSource: SectionDataSource, View {
     private let disposeBag = DisposeBag()
     private var viewCount = 0
     
+    func didLoad() {
+    }
+    
     func bind(to viewModel: ScrollGoodsSectionViewModel) {
         makeHeaderItem(header: viewModel.state.header)
         

@@ -10,8 +10,8 @@ import Foundation
 final class GridGoodsSectionViewModel: SectionViewModel, ViewModel {
     
     enum Constants {
-        static let startItemCount = 6
-        static let moreAddCount = 3
+        static let startRowCount = 6
+        static let columnCount = 3
     }
     
     struct Action {
@@ -51,7 +51,7 @@ final class GridGoodsSectionViewModel: SectionViewModel, ViewModel {
         action.loadData
             .bind(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                let itemCount = min(Constants.startItemCount, self.cellModels.count)
+                let itemCount = min(Constants.startRowCount, self.cellModels.count)
                 self.state.itemCount.accept(itemCount)
             })
             .disposeBag(disposeBag)
@@ -74,7 +74,7 @@ final class GridGoodsSectionViewModel: SectionViewModel, ViewModel {
             .bind(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 let currentCount = self.state.itemCount.value ?? 0
-                let stackCount = currentCount + Constants.moreAddCount
+                let stackCount = currentCount + Constants.columnCount
                 let viewCount = min(stackCount, self.cellModels.count)
                 
                 self.state.itemCount.accept(viewCount)

@@ -44,6 +44,9 @@ final class StyleSectionDataSource: SectionDataSource, View {
     private let disposeBag = DisposeBag()
     private var viewCount = 0
     
+    func didLoad() {
+    }
+    
     func bind(to viewModel: StyleSectionViewModel) {
         makeHeaderItem(header: viewModel.state.header)
         makeFooterItem(footer: viewModel.state.footer)
