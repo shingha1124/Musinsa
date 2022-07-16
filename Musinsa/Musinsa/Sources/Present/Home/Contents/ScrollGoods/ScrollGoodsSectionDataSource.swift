@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ScrollGoodsSectionDataSource: SectionDataSource, View {
+final class ScrollGoodsSectionDataSource: SectionDataSource, HeaderUsable, View {
     
     private let item: NSCollectionLayoutItem = {
         let fractionalWidth = 1.0
@@ -51,7 +51,7 @@ final class ScrollGoodsSectionDataSource: SectionDataSource, View {
     }
     
     func bind(to viewModel: ScrollGoodsSectionViewModel) {
-        makeHeaderItem(header: viewModel.state.header)
+        appendHeaderItem(section, header: viewModel.state.header)
         
         viewModel.state.itemCount
             .bind(onNext: { [weak self] count in

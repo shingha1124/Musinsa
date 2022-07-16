@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class BannerSectionDataSource: SectionDataSource, View {
+final class BannerSectionDataSource: SectionDataSource, BannerCountable, View {
     
     private let item: NSCollectionLayoutItem = {
         let width: NSCollectionLayoutDimension = .fractionalWidth(1)
@@ -36,14 +36,7 @@ final class BannerSectionDataSource: SectionDataSource, View {
             if var page = Int(exactly: (scrollOffset.x) / cells[0].frame.width) {
                 self.viewModel?.action.changePage.accept(page)
             }
-        }
-        
-        let anchor = NSCollectionLayoutAnchor(edges: [.bottom, .trailing],
-                                              absoluteOffset: CGPoint(x: 0, y: -10))
-        
-        let pageItem = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(45.0)), elementKind: BannerPageCountingView.elementKindSection, containerAnchor: anchor)
-        section.boundarySupplementaryItems.append(pageItem)
-        
+        }        
         return section
     }()
         
@@ -59,6 +52,8 @@ final class BannerSectionDataSource: SectionDataSource, View {
     }
     
     func bind(to viewModel: BannerSectionViewModel) {
+        appendBannerCountItem(section)
+        
         viewModel.state.itemCount
             .bind(onNext: { [weak self] count in
                 self?.viewCount = count
@@ -80,12 +75,8 @@ extension BannerSectionDataSource {
     
     func supplementaryElement(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
-        case BannerPageCountingView.elementKindSection:
-            guard let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: BannerPageCountingView.identifier, for: indexPath) as? BannerPageCountingView else {
-                return UICollectionReusableView()
-            }
-            view.viewModel = viewModel?.state.bannerCounting
-            return view
+        case BannerPageCountingView.elementKind:
+            return reusableBannerCount(collectionView, indexPath: indexPath, model: viewModel?.state.bannerCounting)
         default:
             return UICollectionReusableView()
         }

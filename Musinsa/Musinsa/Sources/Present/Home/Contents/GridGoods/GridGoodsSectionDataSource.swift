@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class GridGoodsSectionDataSource: SectionDataSource, View {
+final class GridGoodsSectionDataSource: SectionDataSource, FooterUsable, HeaderUsable, View {
     
     private let item: NSCollectionLayoutItem = {
         let fractionalWidth = 1.0 / 3.0
@@ -49,8 +49,8 @@ final class GridGoodsSectionDataSource: SectionDataSource, View {
     }
     
     func bind(to viewModel: GridGoodsSectionViewModel) {
-        makeHeaderItem(header: viewModel.state.header)
-        makeFooterItem(footer: viewModel.state.footer)
+        appendHeaderItem(section, header: viewModel.state.header)
+        appendFooterItem(section, footer: viewModel.state.footer)
         
         viewModel.state.itemCount
             .bind(onNext: { [weak self] count in

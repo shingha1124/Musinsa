@@ -60,6 +60,9 @@
 		E0A2AE8A287E61A800C93CB1 /* MusinsaRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A2AE89287E61A800C93CB1 /* MusinsaRepository.swift */; };
 		E0A2AE8C287E639600C93CB1 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A2AE8B287E639600C93CB1 /* HomeModel.swift */; };
 		E0A2AE8E287E65F300C93CB1 /* APIResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A2AE8D287E65F300C93CB1 /* APIResult.swift */; };
+		E0D4F75A2882777C00934C32 /* FooterUsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D4F7592882777C00934C32 /* FooterUsable.swift */; };
+		E0D4F75C288278FF00934C32 /* HeaderUsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D4F75B288278FF00934C32 /* HeaderUsable.swift */; };
+		E0D4F75E28827A2600934C32 /* BannerCountable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D4F75D28827A2600934C32 /* BannerCountable.swift */; };
 		E0FCD315287FFE6B00D550C8 /* SectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FCD314287FFE6B00D550C8 /* SectionCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -121,6 +124,9 @@
 		E0A2AE89287E61A800C93CB1 /* MusinsaRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusinsaRepository.swift; sourceTree = "<group>"; };
 		E0A2AE8B287E639600C93CB1 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		E0A2AE8D287E65F300C93CB1 /* APIResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResult.swift; sourceTree = "<group>"; };
+		E0D4F7592882777C00934C32 /* FooterUsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterUsable.swift; sourceTree = "<group>"; };
+		E0D4F75B288278FF00934C32 /* HeaderUsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderUsable.swift; sourceTree = "<group>"; };
+		E0D4F75D28827A2600934C32 /* BannerCountable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCountable.swift; sourceTree = "<group>"; };
 		E0FCD314287FFE6B00D550C8 /* SectionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -230,6 +236,7 @@
 			children = (
 				E02EF725287EFD16002E656D /* HomeSectionHeaderView.swift */,
 				E02EF729287F07D6002E656D /* HomeSectionHeaderViewModel.swift */,
+				E0D4F75B288278FF00934C32 /* HeaderUsable.swift */,
 			);
 			path = Header;
 			sourceTree = "<group>";
@@ -239,6 +246,7 @@
 			children = (
 				E02EF727287F04EE002E656D /* HomeSectionFooterView.swift */,
 				E02EF72B287F0837002E656D /* HomeSectionFooterViewModel.swift */,
+				E0D4F7592882777C00934C32 /* FooterUsable.swift */,
 			);
 			path = Footer;
 			sourceTree = "<group>";
@@ -267,6 +275,7 @@
 			children = (
 				E03AFDC4288011AC008AF765 /* BannerPageCountingView.swift */,
 				E03AFDD22880352E008AF765 /* BannerPageCountingViewModel.swift */,
+				E0D4F75D28827A2600934C32 /* BannerCountable.swift */,
 			);
 			path = BannerPage;
 			sourceTree = "<group>";
@@ -567,6 +576,7 @@
 				E02EF6BF287E7FBC002E656D /* Goods.swift in Sources */,
 				E02EF722287EF985002E656D /* NSAttributedString+Extension.swift in Sources */,
 				E0A2AE7B287E594400C93CB1 /* NetworkRepository.swift in Sources */,
+				E0D4F75A2882777C00934C32 /* FooterUsable.swift in Sources */,
 				E02EF712287ECA7F002E656D /* ScrollGoodsSectionDataSource.swift in Sources */,
 				E03AFDCB28801821008AF765 /* GridGoodsSectionViewModel.swift in Sources */,
 				E0A2AE5A287E4B2F00C93CB1 /* HomeViewController.swift in Sources */,
@@ -586,6 +596,7 @@
 				E03AFDCD2880187A008AF765 /* ScrollGoodsSectionViewModel.swift in Sources */,
 				E02EF72C287F0837002E656D /* HomeSectionFooterViewModel.swift in Sources */,
 				E02EF6D2287E9B22002E656D /* BannerViewCell.swift in Sources */,
+				E0D4F75E28827A2600934C32 /* BannerCountable.swift in Sources */,
 				E0A2AE86287E5F8B00C93CB1 /* URLSessionProvider.swift in Sources */,
 				E02EF728287F04EE002E656D /* HomeSectionFooterView.swift in Sources */,
 				E03AFDC9288017CD008AF765 /* StyleSectionViewModel.swift in Sources */,
@@ -599,6 +610,7 @@
 				E0A2AE7F287E5B8500C93CB1 /* BaseAPI.swift in Sources */,
 				E02EF716287ECA7F002E656D /* GridGoodsSectionDataSource.swift in Sources */,
 				E0A2AE58287E4B2F00C93CB1 /* SceneDelegate.swift in Sources */,
+				E0D4F75C288278FF00934C32 /* HeaderUsable.swift in Sources */,
 				E03AFDC5288011AC008AF765 /* BannerPageCountingView.swift in Sources */,
 				E02EF726287EFD16002E656D /* HomeSectionHeaderView.swift in Sources */,
 				E02EF6EE287EBE3A002E656D /* SectionDataSource.swift in Sources */,

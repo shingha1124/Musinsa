@@ -9,7 +9,7 @@ import UIKit
 
 class BannerPageCountingView: UICollectionReusableView, View {
     static var identifier: String { .init(describing: self) }
-    static var elementKindSection: String { .init(describing: self) }
+    static var elementKind: String { .init(describing: self) }
     
     private let countingLabel: PaddingLabel = {
         let label = PaddingLabel()
